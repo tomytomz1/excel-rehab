@@ -100,7 +100,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Navbar />
-        <main id="main-content" className="min-h-screen pt-16 lg:pt-[80px] overflow-x-hidden w-full min-w-0">
+        <main id="main-content" className="min-h-screen pt-16 lg:pt-[80px] overflow-x-clip w-full min-w-0">
           {children}
         </main>
         <Footer />

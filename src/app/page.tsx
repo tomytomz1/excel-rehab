@@ -13,7 +13,7 @@ export default function Home() {
   return (
     <>
       {/* Hero sits behind transparent Navbar — pull up by main padding (match navbar height: 80px desktop, 64px mobile) */}
-      <div className={cn("-mt-16 lg:-mt-[80px] overflow-x-hidden min-w-0 w-full")}>
+      <div className={cn("-mt-16 lg:-mt-[80px] overflow-x-clip min-w-0 w-full")}>
         <Hero />
       </div>
       <TrustBar />
