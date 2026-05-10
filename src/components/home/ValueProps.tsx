@@ -15,25 +15,19 @@ const CARDS = [
     image: "/images/shoulder-exam.jpg",
     alt: "Doctor examining patient's shoulder",
     title: "Comprehensive Assessment",
-    description:
-      BROCHURE_COPY +
-      " [PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: BROCHURE_COPY,
   },
   {
     image: "/images/caregiver-patient.jpg",
     alt: "Caregiver with patient",
     title: "Patient-Centered Treatment",
-    description:
-      BROCHURE_COPY +
-      " [PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: BROCHURE_COPY,
   },
   {
     image: "/images/knee-therapy.jpg",
     alt: "Knee therapy and rehabilitation",
     title: "Functional Recovery",
-    description:
-      BROCHURE_COPY +
-      " [PLACEHOLDER] Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    description: BROCHURE_COPY,
   },
 ] as const;
 

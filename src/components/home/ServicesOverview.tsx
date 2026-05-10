@@ -55,12 +55,9 @@ export function ServicesOverview() {
             >
               <ServiceIcon name={service.icon} />
               <div className="min-w-0">
-                <h3 className="text-2xl font-semibold text-neutral-900 mb-1 group-hover:text-brand-blue transition-colors leading-tight">
+                <h3 className="text-2xl font-semibold text-neutral-900 group-hover:text-brand-blue transition-colors leading-tight">
                   {service.name}
                 </h3>
-                <p className="text-base text-neutral-600 line-clamp-1 leading-relaxed">
-                  {service.description}
-                </p>
               </div>
             </Link>
           ))}

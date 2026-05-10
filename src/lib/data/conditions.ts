@@ -1,6 +1,5 @@
 /**
- * Excel PM&R — conditions treated (from plan, 4 categories).
- * All 19 conditions from brochure; categories per plan Section 6.
+ * Excel PM&R — conditions treated from brochure.
  */
 
 export const CONDITION_CATEGORIES = [
@@ -19,10 +18,29 @@ export interface Condition {
 }
 
 export const CONDITIONS: Condition[] = [
-  // Spine & Back
   {
     name: "Acute and Chronic Neck and Low Back Pain",
     slug: "acute-chronic-neck-low-back-pain",
+    category: "Spine & Back",
+  },
+  {
+    name: "Whiplash Injuries from MVA",
+    slug: "whiplash-injuries-mva",
+    category: "Injuries",
+  },
+  {
+    name: "Slip and Fall Injuries",
+    slug: "slip-fall-injuries",
+    category: "Injuries",
+  },
+  {
+    name: "Joint Arthritis",
+    slug: "joint-arthritis",
+    category: "Joint & Extremity",
+  },
+  {
+    name: "Neck and Lumbar Degenerative Joint Disease",
+    slug: "neck-lumbar-degenerative-joint-disease",
     category: "Spine & Back",
   },
   {
@@ -36,35 +54,9 @@ export const CONDITIONS: Condition[] = [
     category: "Spine & Back",
   },
   {
-    name: "Neck and Lumbar Degenerative Joint Disease",
-    slug: "neck-lumbar-degenerative-joint-disease",
-    category: "Spine & Back",
-  },
-  // Injuries
-  {
-    name: "Whiplash Injuries from MVA",
-    slug: "whiplash-injuries-mva",
-    category: "Injuries",
-  },
-  {
-    name: "Slip and Fall Injuries",
-    slug: "slip-fall-injuries",
-    category: "Injuries",
-  },
-  {
-    name: "Sports Injuries",
-    slug: "sports-injuries",
-    category: "Injuries",
-  },
-  {
-    name: "Muscle Strains and Tears",
-    slug: "muscle-strains-tears",
-    category: "Injuries",
-  },
-  {
-    name: "Multiple Orthopedic Fractures",
-    slug: "multiple-orthopedic-fractures",
-    category: "Injuries",
+    name: "Spasticity",
+    slug: "spasticity",
+    category: "Neurological",
   },
   {
     name: "Traumatic Brain Injuries",
@@ -76,21 +68,15 @@ export const CONDITIONS: Condition[] = [
     slug: "spinal-cord-injuries",
     category: "Injuries",
   },
-  // Joint & Extremity
   {
-    name: "Joint Arthritis",
-    slug: "joint-arthritis",
-    category: "Joint & Extremity",
+    name: "Multiple Orthopedic Fractures",
+    slug: "multiple-orthopedic-fractures",
+    category: "Injuries",
   },
   {
-    name: "Frozen Shoulder",
-    slug: "frozen-shoulder",
-    category: "Joint & Extremity",
-  },
-  {
-    name: "Carpal Tunnel Syndrome",
-    slug: "carpal-tunnel-syndrome",
-    category: "Joint & Extremity",
+    name: "Muscle Strains and Tears",
+    slug: "muscle-strains-tears",
+    category: "Injuries",
   },
   {
     name: "Patellofemoral Dysfunction",
@@ -103,15 +89,24 @@ export const CONDITIONS: Condition[] = [
     category: "Joint & Extremity",
   },
   {
+    name: "Sports Injuries",
+    slug: "sports-injuries",
+    category: "Injuries",
+  },
+  {
     name: "Tendonitis / Bursitis",
     slug: "tendonitis-bursitis",
     category: "Joint & Extremity",
   },
-  // Neurological
   {
-    name: "Spasticity",
-    slug: "spasticity",
-    category: "Neurological",
+    name: "Frozen Shoulder",
+    slug: "frozen-shoulder",
+    category: "Joint & Extremity",
+  },
+  {
+    name: "Carpal Tunnel Syndrome",
+    slug: "carpal-tunnel-syndrome",
+    category: "Joint & Extremity",
   },
   {
     name: "Vestibular Rehabilitation / BPPV",

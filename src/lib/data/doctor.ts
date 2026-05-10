@@ -9,6 +9,7 @@ export const DOCTOR = {
   certifications: [
     "Board Certified in Physical Medicine and Rehabilitation",
     "Board Certified in Pain Medicine",
+    "Licensed Nursing Home Administrator",
   ] as const,
   title: "Medical Director of Excel Physical Medicine and Rehab",
   affiliations: [

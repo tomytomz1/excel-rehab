@@ -208,34 +208,6 @@ export default function AboutPage() {
         </div>
       </SectionWrapper>
 
-      {/* Our Story — [PLACEHOLDER] */}
-      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 mb-6 leading-tight">
-            Our Story
-          </h2>
-          <div className="max-w-[75ch]">
-          <p className="text-neutral-700 mb-4 leading-relaxed">
-            <span className="rounded bg-amber-100 px-1.5 py-0.5 text-amber-900 text-base font-medium">
-              [PLACEHOLDER — Awaiting clinic history from client]
-            </span>{" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
-          <p className="text-neutral-700 leading-relaxed">
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum. Sed ut perspiciatis
-            unde omnis iste natus error sit voluptatem accusantium doloremque
-            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore
-            veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-          </p>
-          </div>
-        </div>
-      </SectionWrapper>
     </div>
   );
 }

@@ -43,10 +43,6 @@ function ServiceIcon({ name }: { name: string }) {
   return <Icon className="h-10 w-10 text-brand-blue shrink-0" aria-hidden />;
 }
 
-/** [PLACEHOLDER] 2-3 sentences for hub card description */
-const CARD_DESCRIPTION =
-  "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.";
-
 export default function ServicesPage() {
   return (
     <div>
@@ -75,9 +71,6 @@ export default function ServicesPage() {
                     {service.name}
                   </h2>
                 </div>
-                <p className="text-neutral-600 text-base leading-relaxed flex-1">
-                  [PLACEHOLDER] {CARD_DESCRIPTION}
-                </p>
                 <span className="inline-flex items-center gap-1 text-brand-blue font-semibold text-base group-hover:underline">
                   Learn More
                   <span aria-hidden>→</span>

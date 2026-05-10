@@ -51,9 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { title: "Service | " + SITE_NAME };
   return {
     title: `${service.name} | ${SITE_NAME}`,
-    description:
-      service.description.replace("[PLACEHOLDER] ", "") ||
-      `${service.name} at Excel Physical Medicine and Rehab in Novi, MI.`,
+    description: `${service.name} at Excel Physical Medicine and Rehab in Novi, MI.`,
   };
 }
 
@@ -81,77 +79,33 @@ export default async function ServiceSlugPage({ params }: Props) {
         variant="brand-blue"
       />
 
-      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
+      {conditions.length > 0 && (
+        <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center gap-3 mb-8">
             <Icon className="h-12 w-12 text-brand-blue shrink-0" aria-hidden />
             <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight">
-              Overview
+              Related Conditions
             </h2>
           </div>
-          <div className="prose prose-neutral max-w-[75ch] text-neutral-700 space-y-4 leading-relaxed">
-            <p>
-              <span className="rounded bg-amber-100 px-1.5 py-0.5 text-amber-900 text-base font-medium">
-                [PLACEHOLDER]
-              </span>{" "}
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <p>
-              Duis aute irure dolor in reprehenderit in voluptate velit esse
-              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-              cupidatat non proident, sunt in culpa qui officia deserunt mollit
-              anim id est laborum.
-            </p>
-            <p>
-              Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-              accusantium doloremque laudantium, totam rem aperiam, eaque ipsa
-              quae ab illo inventore veritatis et quasi architecto beatae vitae
-              dicta sunt explicabo.
-            </p>
+          <div className="flex flex-wrap gap-2">
+            {conditions.map((c) => (
+              <Link
+                key={c!.slug}
+                href={`/conditions/${c!.slug}`}
+                className={cn(
+                  "inline-flex items-center min-h-[44px] rounded-full bg-neutral-100 px-4 py-2.5 text-base font-medium text-neutral-800",
+                  "hover:bg-brand-blue hover:text-white transition-colors",
+                  "outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
+                )}
+              >
+                {c!.name}
+              </Link>
+            ))}
           </div>
-
-          <h3 className="text-2xl font-semibold text-neutral-900 mt-12 mb-4 leading-tight">
-            What to Expect
-          </h3>
-          <p className="text-neutral-700 leading-relaxed">
-            <span className="rounded bg-amber-100 px-1.5 py-0.5 text-amber-900 text-base font-medium">
-              [PLACEHOLDER]
-            </span>{" "}
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur.
-          </p>
-
-          {conditions.length > 0 && (
-            <>
-              <h3 className="text-2xl font-semibold text-neutral-900 mt-12 mb-4 leading-tight">
-                Conditions This Treats
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {conditions.map((c) => (
-                  <Link
-                    key={c!.slug}
-                    href={`/conditions/${c!.slug}`}
-                    className={cn(
-                      "inline-flex items-center min-h-[44px] rounded-full bg-neutral-100 px-4 py-2.5 text-base font-medium text-neutral-800",
-                      "hover:bg-brand-blue hover:text-white transition-colors",
-                      "outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
-                    )}
-                  >
-                    {c!.name}
-                  </Link>
-                ))}
-              </div>
-            </>
-          )}
         </div>
-      </SectionWrapper>
+        </SectionWrapper>
+      )}
 
       <SectionWrapper amount={0} className="py-12 bg-neutral-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

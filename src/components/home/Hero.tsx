@@ -66,19 +66,21 @@ export function Hero() {
           initial={noAnimation ? visibleState : "hidden"}
           animate={noAnimation ? visibleState : "visible"}
         >
-          <motion.p
+          <motion.div
             variants={noAnimation ? undefined : item}
             initial={noAnimation ? visibleState : undefined}
             animate={noAnimation ? visibleState : undefined}
-            className="text-white/90 text-sm sm:text-base font-medium tracking-[0.2em] uppercase mb-4"
+            className="text-white text-lg sm:text-xl font-semibold tracking-[0.12em] uppercase mb-5 space-y-2"
           >
-            PHYSICAL MEDICINE & REHABILITATION IN NOVI, MICHIGAN
-          </motion.p>
+            <p>PATIENT CENTERED</p>
+            <p>FUNCTION FOCUSED</p>
+            <p>INTERDISCIPLINARY CARE</p>
+          </motion.div>
           <motion.h1
             variants={noAnimation ? undefined : item}
             initial={noAnimation ? visibleState : undefined}
             animate={noAnimation ? visibleState : undefined}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6"
+            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 uppercase"
           >
             {TAGLINES.hero}
           </motion.h1>
@@ -86,11 +88,18 @@ export function Hero() {
             variants={noAnimation ? undefined : item}
             initial={noAnimation ? visibleState : undefined}
             animate={noAnimation ? visibleState : undefined}
+            className="text-white/90 text-sm sm:text-base font-medium tracking-[0.18em] uppercase mb-5"
+          >
+            Located in Novi, Michigan
+          </motion.p>
+          <motion.p
+            variants={noAnimation ? undefined : item}
+            initial={noAnimation ? visibleState : undefined}
+            animate={noAnimation ? visibleState : undefined}
             className="text-white/80 text-base sm:text-lg font-normal max-w-xl mb-8"
           >
-            Patient centered, function focused, interdisciplinary care. Focused
-            on the prevention, diagnosis, and non-operative management of pain
-            and disability.
+            Focused on the prevention, diagnosis, and non-operative management
+            for patients with disorders associated with disability.
           </motion.p>
           <motion.div
             variants={noAnimation ? undefined : item}
@@ -100,25 +109,15 @@ export function Hero() {
               "flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
             )}
           >
-            <Link
-              href="/contact"
-              className={cn(
-                "hidden sm:inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-white",
-                "hover:opacity-90 transition-opacity",
-                FOCUS_RING
-              )}
-            >
-              Schedule an Appointment
-            </Link>
             <a
               href={`tel:${PHONE.replace(/\./g, "")}`}
               className={cn(
-                "sm:hidden inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-white",
+                "inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-white",
                 "hover:opacity-90 transition-opacity",
                 FOCUS_RING
               )}
             >
-              Call Now
+              CALL NOW
             </a>
             <Link
               href="/services"
@@ -128,7 +127,7 @@ export function Hero() {
                 FOCUS_RING
               )}
             >
-              Explore Services
+              EXPLORE SERVICES
             </Link>
           </motion.div>
         </motion.div>

@@ -34,6 +34,23 @@ export default function ContactPage() {
                 This form is for scheduling inquiries only. Please do not
                 include sensitive medical information.
               </p>
+              <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
+                <h2 className="text-xl font-semibold text-neutral-900 mb-3">
+                  Clinic Manager
+                </h2>
+                <p className="text-neutral-700 leading-relaxed">
+                  If you would like to contact our Clinic Manager, please email:
+                </p>
+                <p className="mt-3 font-semibold text-neutral-900">
+                  Chris Negapatan, PTA
+                </p>
+                <a
+                  href="mailto:ChrisN@maplemanorrehab.com"
+                  className="text-brand-blue font-semibold hover:underline"
+                >
+                  ChrisN@maplemanorrehab.com
+                </a>
+              </div>
             </div>
 
             {/* Right: Info + Map */}
@@ -58,10 +75,7 @@ export default function ContactPage() {
                 </p>
                 <p className="text-neutral-600">Fax: {FAX}</p>
                 <p className="text-neutral-600 mt-2">
-                  <span className="rounded bg-amber-100 px-1.5 py-0.5 text-amber-900 text-base font-medium">
-                    [PLACEHOLDER]
-                  </span>{" "}
-                  Please call for current hours.
+                  Business Hours: 9am to 5pm (or by appointment)
                 </p>
               </div>
               <div className="rounded-xl overflow-hidden border border-neutral-200 aspect-[4/3] min-h-[280px]">

@@ -48,13 +48,14 @@ const REASON_OPTIONS = [
 
 export function ContactFormClient() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const {
     control,
     register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -74,9 +75,24 @@ export function ContactFormClient() {
     defaultValue: "New Patient",
   });
 
-  const onSubmit = (data: ContactFormData) => {
-    console.log(data);
-    setSubmitted(true);
+  const onSubmit = async (data: ContactFormData) => {
+    setSubmitError(null);
+
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        throw new Error("Unable to send your message right now.");
+      }
+
+      setSubmitted(true);
+    } catch {
+      setSubmitError("Unable to send your message right now. Please call us directly.");
+    }
   };
 
   if (submitted) {
@@ -141,7 +157,11 @@ export function ContactFormClient() {
         </label>
         <Select
           value={preferredTime}
-          onValueChange={(v) => setValue("preferredTime", v as ContactFormData["preferredTime"])}
+          onValueChange={(v) =>
+            setValue("preferredTime", v as ContactFormData["preferredTime"], {
+              shouldValidate: true,
+            })
+          }
         >
           <SelectTrigger id="preferredTime" className="w-full">
             <SelectValue placeholder="Select..." />
@@ -161,7 +181,11 @@ export function ContactFormClient() {
         </label>
         <Select
           value={reason}
-          onValueChange={(v) => setValue("reason", v as ContactFormData["reason"])}
+          onValueChange={(v) =>
+            setValue("reason", v as ContactFormData["reason"], {
+              shouldValidate: true,
+            })
+          }
         >
           <SelectTrigger id="reason" className="w-full">
             <SelectValue placeholder="Select..." />
@@ -186,8 +210,17 @@ export function ContactFormClient() {
           placeholder="Brief message or questions..."
         />
       </div>
-      <Button type="submit" className="w-full bg-brand-green hover:bg-brand-green/90">
-        Send Message
+      {submitError && (
+        <p className="text-base text-red-600" role="alert">
+          {submitError}
+        </p>
+      )}
+      <Button
+        type="submit"
+        disabled={isSubmitting}
+        className="w-full bg-brand-green hover:bg-brand-green/90"
+      >
+        {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
     </form>
   );
