@@ -43,7 +43,7 @@ export function Footer() {
                 className="h-10 w-auto object-contain brightness-0 invert"
               />
             </Link>
-            <p className="text-base text-neutral-400 max-w-xs">
+            <p className="text-base text-neutral-300 max-w-xs">
               {TAGLINES.primary}
             </p>
           </div>
@@ -56,7 +56,7 @@ export function Footer() {
                 <li key={href}>
                   <Link
                     href={href}
-                    className="text-neutral-400 hover:text-white text-base transition-colors"
+                    className="text-neutral-300 hover:text-white text-base transition-colors"
                   >
                     {label}
                   </Link>
@@ -70,13 +70,8 @@ export function Footer() {
             <h3 className="font-semibold text-white mb-4">Services</h3>
             <ul className="space-y-2">
               {FIRST_SIX_SERVICES.map(({ name, slug }) => (
-                <li key={slug}>
-                  <Link
-                    href={`/services/${slug}`}
-                    className="text-neutral-400 hover:text-white text-base transition-colors"
-                  >
-                    {name}
-                  </Link>
+                <li key={slug} className="text-neutral-300 text-base">
+                  {name}
                 </li>
               ))}
             </ul>
@@ -85,7 +80,7 @@ export function Footer() {
           {/* Column 4: Contact */}
           <div>
             <h3 className="font-semibold text-white mb-4">Contact</h3>
-            <address className="not-italic space-y-2 text-base text-neutral-400">
+            <address className="not-italic space-y-2 text-base text-neutral-300">
               <p>{SITE_ADDRESS.full}</p>
               <p>
                 <a
@@ -108,12 +103,20 @@ export function Footer() {
           "flex flex-col items-center justify-center gap-3 text-base text-neutral-500 text-center"
         )}
       >
+        <p className="text-sm text-neutral-400 max-w-2xl leading-relaxed">
+          Information on this website is for general purposes only and is not
+          medical advice. For emergencies, call 911. Do not use the contact form
+          for urgent medical situations.
+        </p>
         <p>© 2026 {SITE_NAME}. All rights reserved.</p>
-        <div className="flex items-center justify-center gap-6">
-          <Link href="#" className="hover:text-neutral-400 transition-colors">
+        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+          <Link href="/privacy" className="hover:text-neutral-300 transition-colors">
             Privacy Policy
           </Link>
-          <Link href="#" className="hover:text-neutral-400 transition-colors">
+          <Link href="/hipaa-notice" className="hover:text-neutral-300 transition-colors">
+            HIPAA Notice
+          </Link>
+          <Link href="/accessibility" className="hover:text-neutral-300 transition-colors">
             Accessibility
           </Link>
         </div>

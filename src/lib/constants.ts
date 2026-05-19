@@ -17,6 +17,10 @@ export const PHONE = "248.624.5176";
 export const FAX = "248.624.5314";
 export const WEBSITE_URL = "https://www.excel-rehab.com";
 
+/** Google Business Profile review link (from clinic QR code) */
+export const GOOGLE_REVIEW_URL =
+  "https://g.page/r/CfS47j8ganVaEAE/review?utm_source=gbp&utm_medium=reviews&utm_campaign=qr";
+
 /** Brand taglines from brochure (verbatim) */
 export const TAGLINES = {
   primary: "Patient Centered, Function Focused, Interdisciplinary Care",

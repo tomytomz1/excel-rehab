@@ -96,7 +96,7 @@ export function Hero() {
             variants={noAnimation ? undefined : item}
             initial={noAnimation ? visibleState : undefined}
             animate={noAnimation ? visibleState : undefined}
-            className="text-white/80 text-base sm:text-lg font-normal max-w-xl mb-8"
+            className="text-white/90 text-base sm:text-lg font-normal max-w-xl mb-8"
           >
             Focused on the prevention, diagnosis, and non-operative management
             for patients with disorders associated with disability.

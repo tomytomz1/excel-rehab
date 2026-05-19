@@ -29,10 +29,23 @@ export default function ContactPage() {
               <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                 Send us a message
               </h2>
+              <p className="mb-4 text-base text-neutral-700 leading-relaxed rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
+                <strong>Not for emergencies.</strong> If you have a medical
+                emergency, call 911. This form is for scheduling inquiries only.
+                Please do not include symptoms, diagnoses, or other sensitive
+                medical information.
+              </p>
               <ContactFormClient />
               <p className="mt-4 text-base text-neutral-600 leading-relaxed">
-                This form is for scheduling inquiries only. Please do not
-                include sensitive medical information.
+                See our{" "}
+                <a href="/hipaa-notice" className="text-brand-blue font-medium hover:underline">
+                  HIPAA Notice
+                </a>{" "}
+                and{" "}
+                <a href="/privacy" className="text-brand-blue font-medium hover:underline">
+                  Privacy Policy
+                </a>
+                .
               </p>
               <div className="mt-8 rounded-xl border border-neutral-200 bg-neutral-50 p-6">
                 <h2 className="text-xl font-semibold text-neutral-900 mb-3">

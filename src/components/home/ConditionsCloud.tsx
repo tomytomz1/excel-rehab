@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { useRef } from "react";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
@@ -50,16 +49,14 @@ function CategoryBlock({
               ease: "easeOut",
             }}
           >
-            <Link
-              href={`/conditions/${cond.slug}`}
+            <span
               className={cn(
                 "inline-flex items-center min-h-[44px] px-4 py-2.5 rounded-full text-base font-medium",
-                "border-2 border-brand-blue text-brand-blue bg-transparent",
-                "hover:bg-brand-blue hover:text-white transition-colors duration-200"
+                "border-2 border-brand-blue/40 text-brand-blue bg-transparent"
               )}
             >
               {cond.name}
-            </Link>
+            </span>
           </motion.li>
         ))}
       </ul>

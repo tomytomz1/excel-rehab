@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { SERVICES } from "@/lib/data/services";
-import { cn } from "@/lib/utils";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Dumbbell,
@@ -45,21 +44,17 @@ export function ServicesOverview() {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((service) => (
-            <Link
+            <article
               key={service.slug}
-              href={`/services/${service.slug}`}
-              className={cn(
-                "group flex gap-4 p-5 rounded-xl bg-neutral-100/50 border-l-4 border-transparent",
-                "hover:border-brand-green hover:bg-neutral-100 transition-all duration-200"
-              )}
+              className="flex gap-4 p-5 rounded-xl bg-neutral-100/50"
             >
               <ServiceIcon name={service.icon} />
               <div className="min-w-0">
-                <h3 className="text-2xl font-semibold text-neutral-900 group-hover:text-brand-blue transition-colors leading-tight">
+                <h3 className="text-2xl font-semibold text-neutral-900 leading-tight">
                   {service.name}
                 </h3>
               </div>
-            </Link>
+            </article>
           ))}
         </div>
         <div className="text-center mt-10">

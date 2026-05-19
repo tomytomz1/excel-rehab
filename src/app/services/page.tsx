@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import {
   Dumbbell,
   Syringe,
@@ -52,30 +51,22 @@ export default function ServicesPage() {
         variant="brand-blue"
       />
 
-      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
+      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {SERVICES.map((service) => (
-              <Link
+              <article
                 key={service.slug}
-                href={`/services/${service.slug}`}
                 className={cn(
-                  "group flex flex-col gap-4 p-6 rounded-xl bg-neutral-100/50 border border-neutral-200/80",
-                  "hover:border-brand-green hover:shadow-lg transition-all duration-200",
-                  "outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
+                  "flex items-start gap-4 p-6 lg:p-8 rounded-xl bg-white",
+                  "border border-neutral-200/80 shadow-sm"
                 )}
               >
-                <div className="flex items-start gap-4">
-                  <ServiceIcon name={service.icon} />
-                  <h2 className="text-2xl font-semibold text-neutral-900 group-hover:text-brand-blue transition-colors leading-tight">
-                    {service.name}
-                  </h2>
-                </div>
-                <span className="inline-flex items-center gap-1 text-brand-blue font-semibold text-base group-hover:underline">
-                  Learn More
-                  <span aria-hidden>→</span>
-                </span>
-              </Link>
+                <ServiceIcon name={service.icon} />
+                <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight">
+                  {service.name}
+                </h2>
+              </article>
             ))}
           </div>
         </div>

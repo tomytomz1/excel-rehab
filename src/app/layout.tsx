@@ -80,6 +80,11 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://www.excel-rehab.com",
   },
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+    apple: [{ url: "/apple-icon.png", type: "image/png" }],
+    shortcut: [{ url: "/icon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
@@ -100,7 +105,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <Navbar />
-        <main id="main-content" className="min-h-screen pt-16 lg:pt-[80px] overflow-x-clip w-full min-w-0">
+        <main id="main-content" className="pt-16 lg:pt-[80px] overflow-x-clip w-full min-w-0">
           {children}
         </main>
         <Footer />

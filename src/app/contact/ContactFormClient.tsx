@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -14,12 +14,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Turnstile } from "@/components/shared/Turnstile";
 import { cn } from "@/lib/utils";
 
 const contactSchema = z.object({
-  name: z.string().min(1, "Name is required"),
-  phone: z.string().min(1, "Phone is required"),
-  email: z.string().min(1, "Email is required").email("Invalid email"),
+  name: z.string().min(1, "Name is required").max(200),
+  phone: z.string().min(1, "Phone is required").max(50),
+  email: z.string().min(1, "Email is required").email("Invalid email").max(254),
   preferredTime: z.enum(["Morning", "Afternoon", "Evening", "No Preference"]),
   reason: z.enum([
     "New Patient",
@@ -27,7 +28,8 @@ const contactSchema = z.object({
     "Second Opinion",
     "Other",
   ]),
-  message: z.string().optional(),
+  message: z.string().max(2000, "Message must be 2000 characters or less").optional(),
+  website: z.string().max(0).optional(),
 });
 
 type ContactFormData = z.infer<typeof contactSchema>;
@@ -46,9 +48,13 @@ const REASON_OPTIONS = [
   "Other",
 ] as const;
 
+const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
+
 export function ContactFormClient() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null);
+  const [captchaError, setCaptchaError] = useState<string | null>(null);
 
   const {
     control,
@@ -61,6 +67,7 @@ export function ContactFormClient() {
     defaultValues: {
       preferredTime: "No Preference",
       reason: "New Patient",
+      website: "",
     },
   });
 
@@ -75,15 +82,41 @@ export function ContactFormClient() {
     defaultValue: "New Patient",
   });
 
+  const handleVerify = useCallback((token: string) => {
+    setCaptchaToken(token);
+    setCaptchaError(null);
+  }, []);
+
+  const handleExpire = useCallback(() => {
+    setCaptchaToken(null);
+  }, []);
+
+  const handleCaptchaError = useCallback(() => {
+    setCaptchaToken(null);
+    setCaptchaError("Verification failed. Please try again or call us directly.");
+  }, []);
+
   const onSubmit = async (data: ContactFormData) => {
     setSubmitError(null);
+
+    if (TURNSTILE_SITE_KEY && !captchaToken) {
+      setCaptchaError("Please complete the verification challenge.");
+      return;
+    }
 
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, captchaToken }),
       });
+
+      if (response.status === 429) {
+        setSubmitError(
+          "Too many requests. Please wait a moment, then try again or call us directly."
+        );
+        return;
+      }
 
       if (!response.ok) {
         throw new Error("Unable to send your message right now.");
@@ -106,19 +139,28 @@ export function ContactFormClient() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+      <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+        <label htmlFor="website">Website</label>
+        <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
+      </div>
+
       <div>
         <label htmlFor="name" className="mb-1.5 block text-base font-medium text-neutral-700">
           Name <span className="text-red-600">*</span>
         </label>
         <Input
           id="name"
+          autoComplete="name"
           {...register("name")}
           className={cn(errors.name && "border-red-500")}
           aria-invalid={!!errors.name}
+          aria-describedby={errors.name ? "name-error" : undefined}
         />
         {errors.name && (
-          <p className="mt-1 text-base text-red-600">{errors.name.message}</p>
+          <p id="name-error" className="mt-1 text-base text-red-600" role="alert">
+            {errors.name.message}
+          </p>
         )}
       </div>
       <div>
@@ -128,12 +170,16 @@ export function ContactFormClient() {
         <Input
           id="phone"
           type="tel"
+          autoComplete="tel"
           {...register("phone")}
           className={cn(errors.phone && "border-red-500")}
           aria-invalid={!!errors.phone}
+          aria-describedby={errors.phone ? "phone-error" : undefined}
         />
         {errors.phone && (
-          <p className="mt-1 text-base text-red-600">{errors.phone.message}</p>
+          <p id="phone-error" className="mt-1 text-base text-red-600" role="alert">
+            {errors.phone.message}
+          </p>
         )}
       </div>
       <div>
@@ -143,12 +189,16 @@ export function ContactFormClient() {
         <Input
           id="email"
           type="email"
+          autoComplete="email"
           {...register("email")}
           className={cn(errors.email && "border-red-500")}
           aria-invalid={!!errors.email}
+          aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
-          <p className="mt-1 text-base text-red-600">{errors.email.message}</p>
+          <p id="email-error" className="mt-1 text-base text-red-600" role="alert">
+            {errors.email.message}
+          </p>
         )}
       </div>
       <div>
@@ -206,10 +256,39 @@ export function ContactFormClient() {
         <Textarea
           id="message"
           rows={4}
+          maxLength={2000}
           {...register("message")}
           placeholder="Brief message or questions..."
+          aria-describedby={errors.message ? "message-error" : "message-hint"}
+          aria-invalid={!!errors.message}
         />
+        <p id="message-hint" className="mt-1 text-sm text-neutral-500">
+          Do not describe symptoms or diagnoses. Max 2,000 characters.
+        </p>
+        {errors.message && (
+          <p id="message-error" className="mt-1 text-base text-red-600" role="alert">
+            {errors.message.message}
+          </p>
+        )}
       </div>
+
+      {TURNSTILE_SITE_KEY && (
+        <div>
+          <Turnstile
+            siteKey={TURNSTILE_SITE_KEY}
+            action="contact"
+            onVerify={handleVerify}
+            onExpire={handleExpire}
+            onError={handleCaptchaError}
+          />
+          {captchaError && (
+            <p className="mt-2 text-base text-red-600" role="alert">
+              {captchaError}
+            </p>
+          )}
+        </div>
+      )}
+
       {submitError && (
         <p className="text-base text-red-600" role="alert">
           {submitError}
@@ -217,7 +296,7 @@ export function ContactFormClient() {
       )}
       <Button
         type="submit"
-        disabled={isSubmitting}
+        disabled={isSubmitting || (!!TURNSTILE_SITE_KEY && !captchaToken)}
         className="w-full bg-brand-green hover:bg-brand-green/90"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
