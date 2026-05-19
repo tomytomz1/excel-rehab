@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { z } from "zod";
 import { getClientIp, isRateLimited } from "@/lib/rate-limit";
+import { PHONE, SITE_ADDRESS, SITE_NAME } from "@/lib/constants";
 
 const contactSchema = z.object({
   name: z.string().min(1).max(200),
@@ -168,5 +169,59 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Email could not be sent." }, { status: 502 });
   }
 
+  // Send a confirmation to the submitter. Failure here is non-fatal:
+  // staff already received the inquiry, so we don't want to surface an
+  // error to the user just because the auto-reply failed.
+  void sendConfirmationEmail(resend, from, data.name, data.email);
+
   return NextResponse.json({ ok: true });
+}
+
+async function sendConfirmationEmail(
+  resend: Resend,
+  from: string,
+  fullName: string,
+  email: string
+) {
+  // Intentionally does NOT echo the patient's message back, to avoid
+  // re-transmitting any health information they may have included.
+  const firstName = fullName.trim().split(/\s+/)[0] || "there";
+  const phoneTel = PHONE.replace(/\./g, "");
+
+  const text = [
+    `Hi ${firstName},`,
+    "",
+    `Thank you for contacting ${SITE_NAME}. We've received your inquiry and a member of our team will follow up with you soon during business hours (9am–5pm).`,
+    "",
+    `Need to reach us sooner? Call ${PHONE}.`,
+    "",
+    "For medical emergencies, call 911. Please do not reply to this email with symptoms, diagnoses, or other medical details.",
+    "",
+    `— ${SITE_NAME}`,
+    "",
+    SITE_ADDRESS.full,
+  ].join("\n");
+
+  const html = `
+    <p>Hi ${escapeHtml(firstName)},</p>
+    <p>Thank you for contacting ${escapeHtml(SITE_NAME)}. We&rsquo;ve received your inquiry and a member of our team will follow up with you soon during business hours (9am&ndash;5pm).</p>
+    <p><strong>Need to reach us sooner?</strong> Call <a href="tel:${phoneTel}">${escapeHtml(PHONE)}</a>.</p>
+    <p><strong>For medical emergencies, call 911.</strong> Please do not reply to this email with symptoms, diagnoses, or other medical details.</p>
+    <hr />
+    <p style="margin:0">&mdash; ${escapeHtml(SITE_NAME)}</p>
+    <p style="margin:0;color:#555">${escapeHtml(SITE_ADDRESS.full)}</p>
+  `;
+
+  try {
+    await resend.emails.send({
+      from,
+      to: email,
+      replyTo: PRIMARY_RECIPIENT,
+      subject: `We received your inquiry — ${SITE_NAME}`,
+      text,
+      html,
+    });
+  } catch {
+    // Swallow errors; the staff email is the source of truth.
+  }
 }
