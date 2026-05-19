@@ -17,9 +17,9 @@ const contactSchema = z.object({
   captchaToken: z.string().min(1).max(2048).optional(),
 });
 
-const PRIMARY_RECIPIENT = "Kristina@maplemanorrehab.com";
+const PRIMARY_RECIPIENT = "kristina@maplemanorrehab.com";
 const CC_RECIPIENTS = [
-  "ChrisN@maplemanorrehab.com",
+  "chrisn@maplemanorrehab.com",
   "marcus@maplemanorrehab.com",
   "apetere@gmail.com",
 ] as const;

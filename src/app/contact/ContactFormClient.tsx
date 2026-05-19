@@ -50,6 +50,38 @@ const REASON_OPTIONS = [
 
 const TURNSTILE_SITE_KEY = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY ?? "";
 
+/**
+ * Format a US phone number as the user types.
+ * - "+1 5863241248"  -> "+1 (586) 324-1248"
+ * - "5863241248"     -> "(586) 324-1248"
+ * - "15863241248"    -> "(586) 324-1248"  (leading 1 treated as US country code)
+ * Anything non-digit gets stripped except for a leading '+'.
+ */
+function formatUsPhone(raw: string): string {
+  if (!raw) return "";
+  const hasPlus = raw.trimStart().startsWith("+");
+  const digits = raw.replace(/\D/g, "");
+
+  if (hasPlus) {
+    const local = (digits.startsWith("1") ? digits.slice(1) : digits).slice(0, 10);
+    if (local.length === 0) return "+1 ";
+    if (local.length <= 3) return `+1 (${local}`;
+    if (local.length <= 6) return `+1 (${local.slice(0, 3)}) ${local.slice(3)}`;
+    return `+1 (${local.slice(0, 3)}) ${local.slice(3, 6)}-${local.slice(6)}`;
+  }
+
+  let local = digits;
+  if (local.length === 11 && local.startsWith("1")) {
+    local = local.slice(1);
+  }
+  local = local.slice(0, 10);
+
+  if (local.length === 0) return "";
+  if (local.length <= 3) return `(${local}`;
+  if (local.length <= 6) return `(${local.slice(0, 3)}) ${local.slice(3)}`;
+  return `(${local.slice(0, 3)}) ${local.slice(3, 6)}-${local.slice(6)}`;
+}
+
 export function ContactFormClient() {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -104,11 +136,16 @@ export function ContactFormClient() {
       return;
     }
 
+    // Final safety net: format the phone one more time before submit
+    // in case the browser autofill bypassed our onChange handler.
+    const normalizedPhone = formatUsPhone(data.phone);
+    const payload = { ...data, phone: normalizedPhone, captchaToken };
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, captchaToken }),
+        body: JSON.stringify(payload),
       });
 
       if (response.status === 429) {
@@ -170,8 +207,27 @@ export function ContactFormClient() {
         <Input
           id="phone"
           type="tel"
+          inputMode="tel"
           autoComplete="tel"
-          {...register("phone")}
+          placeholder="(586) 324-1248"
+          {...(() => {
+            const reg = register("phone");
+            return {
+              name: reg.name,
+              ref: reg.ref,
+              onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+                e.target.value = formatUsPhone(e.target.value);
+                reg.onChange(e);
+              },
+              onBlur: (e: React.FocusEvent<HTMLInputElement>) => {
+                // Re-format on blur to catch browser autofill that may have
+                // populated the field without firing a React onChange event.
+                e.target.value = formatUsPhone(e.target.value);
+                reg.onChange(e);
+                reg.onBlur(e);
+              },
+            };
+          })()}
           className={cn(errors.phone && "border-red-500")}
           aria-invalid={!!errors.phone}
           aria-describedby={errors.phone ? "phone-error" : undefined}
