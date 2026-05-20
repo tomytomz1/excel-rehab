@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
+import { SITEMAP_URL, WEBSITE_URL } from "@/lib/constants";
 
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/api/"],
     },
-    sitemap: "https://www.excel-rehab.com/sitemap.xml",
+    host: WEBSITE_URL,
+    sitemap: SITEMAP_URL,
   };
 }

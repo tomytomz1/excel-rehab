@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { Fragment } from "react";
 import { Building2, ArrowRight } from "lucide-react";
@@ -6,12 +5,14 @@ import { DOCTOR } from "@/lib/data/doctor";
 import { SITE_NAME, TAGLINES, GOALS } from "@/lib/constants";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
+import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/about",
   title: `About Dr. Evangelista | ${SITE_NAME}`,
   description: `Meet Dr. Augustus (Peter) Evangelista, board certified in Physical Medicine and Rehabilitation and Pain Medicine. Medical Director of Excel PM&R in Novi, MI. ${TAGLINES.primary}`,
-};
+});
 
 const QUOTE =
   "We are committed to providing the highest quality care to help patients achieve their functional goals. At Excel PM&R, we put the needs of the patient first.";

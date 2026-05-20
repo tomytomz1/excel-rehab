@@ -1,15 +1,16 @@
-import type { Metadata } from "next";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { ACCEPTED_INSURANCE } from "@/lib/data/insurance";
 import { PHONE, SITE_NAME } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/patient-resources",
   title: `Accepted Insurances | ${SITE_NAME}`,
   description:
     "Accepted payor sources for Excel Physical Medicine and Rehab in Novi, MI. Call 248.624.5176 to verify coverage.",
-};
+});
 
 export default function PatientResourcesPage() {
   return (

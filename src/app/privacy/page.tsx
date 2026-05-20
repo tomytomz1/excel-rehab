@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { LegalProse } from "@/components/shared/LegalProse";
 import { PHONE, SITE_ADDRESS, SITE_NAME, WEBSITE_URL } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/privacy",
   title: `Privacy Policy | ${SITE_NAME}`,
   description: `Privacy policy for ${SITE_NAME}. How we collect and use information submitted through our website.`,
-};
+});
 
 const phoneTel = PHONE.replace(/\./g, "");
 

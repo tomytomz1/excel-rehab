@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import {
   Dumbbell,
   Syringe,
@@ -16,13 +15,15 @@ import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { SERVICES } from "@/lib/data/services";
 import { SITE_NAME } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/services",
   title: `Our Services | ${SITE_NAME}`,
   description:
     "Physical therapy, joint injections, epidural steroid injections, PRP, regenerative medicine, therapeutic Botox, and more. Comprehensive PM&R care in Novi, MI.",
-};
+});
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Dumbbell,

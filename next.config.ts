@@ -27,6 +27,13 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      // One canonical host for Google (metadataBase uses www).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "excel-rehab.com" }],
+        destination: "https://www.excel-rehab.com/:path*",
+        permanent: true,
+      },
       {
         source: "/services/:slug",
         destination: "/services",

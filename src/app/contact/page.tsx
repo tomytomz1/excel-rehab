@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { ContactFormClient } from "./ContactFormClient";
 import { SITE_ADDRESS, PHONE, FAX, SITE_NAME } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/contact",
   title: `Contact Us | ${SITE_NAME}`,
   description: `${SITE_ADDRESS.full}. Phone ${PHONE}, Fax ${FAX}. Schedule an appointment or send a message.`,
-};
+});
 
 export default function ContactPage() {
   const phoneTel = PHONE.replace(/\./g, "");

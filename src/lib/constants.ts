@@ -15,7 +15,10 @@ export const SITE_ADDRESS = {
 
 export const PHONE = "248.624.5176";
 export const FAX = "248.624.5314";
+/** Canonical production origin (www). Used in sitemap, robots, and metadata. */
 export const WEBSITE_URL = "https://www.excel-rehab.com";
+
+export const SITEMAP_URL = `${WEBSITE_URL}/sitemap.xml`;
 
 /** Google Business Profile review link (from clinic QR code) */
 export const GOOGLE_REVIEW_URL =

@@ -12,6 +12,9 @@ import {
   FAX,
   WEBSITE_URL,
 } from "@/lib/constants";
+import { absoluteUrl } from "@/lib/seo";
+
+const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
 const inter = Inter({
   subsets: ["latin"],
@@ -49,36 +52,42 @@ function buildJsonLdSchema() {
   };
 }
 
+const defaultTitle =
+  "Excel Physical Medicine and Rehab | PM&R Clinic in Novi, MI";
+const defaultDescription =
+  "Board certified physiatrist in Novi, Michigan. Specializing in non-operative pain management, physical therapy, injections, and rehabilitation. Call 248.624.5176.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.excel-rehab.com"),
-  title: "Excel Physical Medicine and Rehab | PM&R Clinic in Novi, MI",
-  description:
-    "Board certified physiatrist in Novi, Michigan. Specializing in non-operative pain management, physical therapy, injections, and rehabilitation. Call 248.624.5176.",
+  metadataBase: new URL(WEBSITE_URL),
+  title: {
+    default: defaultTitle,
+    template: `%s | ${SITE_NAME}`,
+  },
+  description: defaultDescription,
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true } },
+  ...(googleSiteVerification
+    ? { verification: { google: googleSiteVerification } }
+    : {}),
   openGraph: {
-    title: "Excel Physical Medicine and Rehab | PM&R Clinic in Novi, MI",
-    description:
-      "Board certified physiatrist in Novi, Michigan. Specializing in non-operative pain management, physical therapy, injections, and rehabilitation. Call 248.624.5176.",
+    title: defaultTitle,
+    description: defaultDescription,
     type: "website",
-    url: "https://www.excel-rehab.com",
+    url: absoluteUrl("/"),
     locale: "en_US",
-    siteName: "Excel Physical Medicine and Rehab",
+    siteName: SITE_NAME,
     images: [
       {
         url: "/images/logo-color.png",
         width: 1200,
         height: 630,
-        alt: "Excel Physical Medicine and Rehab",
+        alt: SITE_NAME,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Excel Physical Medicine and Rehab | PM&R Clinic in Novi, MI",
-    description:
-      "Board certified physiatrist in Novi, Michigan. Specializing in non-operative pain management, physical therapy, injections, and rehabilitation. Call 248.624.5176.",
-  },
-  alternates: {
-    canonical: "https://www.excel-rehab.com",
+    title: defaultTitle,
+    description: defaultDescription,
   },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],

@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { LegalProse } from "@/components/shared/LegalProse";
 import { PHONE, SITE_ADDRESS, SITE_NAME } from "@/lib/constants";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata = pageMetadata({
+  path: "/hipaa-notice",
   title: `HIPAA Notice | ${SITE_NAME}`,
   description: `Notice regarding use of this website and protected health information for ${SITE_NAME}.`,
-};
+});
 
 const phoneTel = PHONE.replace(/\./g, "");
 
