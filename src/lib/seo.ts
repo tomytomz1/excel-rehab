@@ -12,6 +12,8 @@ type PageMetaInput = {
   path: string;
   title: string;
   description: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 /** Per-page metadata with a unique canonical URL (required for correct Google indexing). */
@@ -19,6 +21,8 @@ export function pageMetadata({
   path,
   title,
   description,
+  image,
+  imageAlt,
 }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
   return {
@@ -30,7 +34,20 @@ export function pageMetadata({
       description,
       url,
       type: "website",
+      ...(image
+        ? { images: [{ url: absoluteUrl(image), alt: imageAlt }] }
+        : {}),
     },
+    ...(image
+      ? {
+          twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [absoluteUrl(image)],
+          },
+        }
+      : {}),
     robots: { index: true, follow: true },
   };
 }

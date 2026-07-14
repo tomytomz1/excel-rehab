@@ -11,6 +11,7 @@ import {
   Scale,
   type LucideIcon,
 } from "lucide-react";
+import Link from "next/link";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { SERVICES } from "@/lib/data/services";
@@ -55,20 +56,38 @@ export default function ServicesPage() {
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {SERVICES.map((service) => (
-              <article
-                key={service.slug}
-                className={cn(
-                  "flex items-start gap-4 p-6 lg:p-8 rounded-xl bg-white",
-                  "border border-neutral-200/80 shadow-sm"
-                )}
-              >
-                <ServiceIcon name={service.icon} />
-                <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight">
-                  {service.name}
-                </h2>
-              </article>
-            ))}
+            {SERVICES.map((service) => {
+              const cardClass = cn(
+                "flex items-start gap-4 p-6 lg:p-8 rounded-xl bg-white",
+                "border border-neutral-200/80 shadow-sm"
+              );
+              const inner = (
+                <>
+                  <ServiceIcon name={service.icon} />
+                  <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight">
+                    {service.name}
+                  </h2>
+                </>
+              );
+
+              if (service.href) {
+                return (
+                  <Link
+                    key={service.slug}
+                    href={service.href}
+                    className={cn(cardClass, "transition-shadow hover:shadow-md")}
+                  >
+                    {inner}
+                  </Link>
+                );
+              }
+
+              return (
+                <article key={service.slug} className={cardClass}>
+                  {inner}
+                </article>
+              );
+            })}
           </div>
         </div>
       </SectionWrapper>

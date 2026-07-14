@@ -20,9 +20,21 @@ export const WEBSITE_URL = "https://www.excel-rehab.com";
 
 export const SITEMAP_URL = `${WEBSITE_URL}/sitemap.xml`;
 
+/** Stable schema.org node id for the business (LocalBusiness/MedicalBusiness). */
+export const BUSINESS_SCHEMA_ID = `${WEBSITE_URL}/#business`;
+
 /** Google Business Profile review link (from clinic QR code) */
-export const GOOGLE_REVIEW_URL =
-  "https://g.page/r/CfS47j8ganVaEAE/review?utm_source=gbp&utm_medium=reviews&utm_campaign=qr";
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CfS47j8ganVaEBM/review";
+
+/** Office hours (verified). Used for display and openingHoursSpecification schema. */
+export const BUSINESS_HOURS = {
+  daysLabel: "Monday–Friday",
+  timeLabel: "9:00 a.m.–5:00 p.m.",
+  fullLabel: "Monday–Friday, 9:00 a.m.–5:00 p.m. or by appointment",
+  opens: "09:00",
+  closes: "17:00",
+  daysOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+} as const;
 
 /** Brand taglines from brochure (verbatim) */
 export const TAGLINES = {

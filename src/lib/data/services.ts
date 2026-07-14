@@ -7,6 +7,7 @@ export interface Service {
   name: string;
   slug: string;
   icon: string;
+  href?: string;
 }
 
 export const SERVICES: Service[] = [
@@ -14,6 +15,7 @@ export const SERVICES: Service[] = [
     name: "On-Site Physical Therapy",
     slug: "on-site-physical-therapy",
     icon: "Dumbbell",
+    href: "/physical-therapy-novi-mi",
   },
   {
     name: "Peripheral Joint Injections",

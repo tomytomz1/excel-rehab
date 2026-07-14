@@ -11,6 +11,8 @@ import {
   PHONE,
   FAX,
   WEBSITE_URL,
+  BUSINESS_SCHEMA_ID,
+  BUSINESS_HOURS,
 } from "@/lib/constants";
 import { absoluteUrl } from "@/lib/seo";
 
@@ -31,6 +33,7 @@ function buildJsonLdSchema() {
   return {
     "@context": "https://schema.org",
     "@type": ["MedicalBusiness", "Physician"],
+    "@id": BUSINESS_SCHEMA_ID,
     name: SITE_NAME,
     description: SCHEMA_DESCRIPTION,
     address: {
@@ -49,6 +52,14 @@ function buildJsonLdSchema() {
     paymentAccepted: "Insurance",
     hasMap:
       "https://www.google.com/maps?q=31190+Novi+Road+Novi+MI+48377",
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: [...BUSINESS_HOURS.daysOfWeek],
+        opens: BUSINESS_HOURS.opens,
+        closes: BUSINESS_HOURS.closes,
+      },
+    ],
   };
 }
 
