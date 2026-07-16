@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { SERVICES } from "@/lib/data/services";
+import { cn } from "@/lib/utils";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Dumbbell,
@@ -43,19 +44,40 @@ export function ServicesOverview() {
           Our Services
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {SERVICES.map((service) => (
-            <article
-              key={service.slug}
-              className="flex gap-4 p-5 rounded-xl bg-neutral-100/50"
-            >
-              <ServiceIcon name={service.icon} />
-              <div className="min-w-0">
-                <h3 className="text-2xl font-semibold text-neutral-900 leading-tight">
-                  {service.name}
-                </h3>
-              </div>
-            </article>
-          ))}
+          {SERVICES.map((service) => {
+            const cardClass = "flex gap-4 p-5 rounded-xl bg-neutral-100/50";
+            const inner = (
+              <>
+                <ServiceIcon name={service.icon} />
+                <div className="min-w-0">
+                  <h3 className="text-2xl font-semibold text-neutral-900 leading-tight">
+                    {service.name}
+                  </h3>
+                </div>
+              </>
+            );
+
+            if (service.href) {
+              return (
+                <Link
+                  key={service.slug}
+                  href={service.href}
+                  className={cn(
+                    cardClass,
+                    "transition-colors hover:bg-neutral-100"
+                  )}
+                >
+                  {inner}
+                </Link>
+              );
+            }
+
+            return (
+              <article key={service.slug} className={cardClass}>
+                {inner}
+              </article>
+            );
+          })}
         </div>
         <div className="text-center mt-10">
           <Link

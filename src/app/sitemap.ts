@@ -9,6 +9,7 @@ const PATHS: Array<{
   { path: "/", changeFrequency: "weekly", priority: 1 },
   { path: "/about", changeFrequency: "monthly", priority: 0.8 },
   { path: "/services", changeFrequency: "monthly", priority: 0.8 },
+  { path: "/physical-therapy-novi-mi", changeFrequency: "monthly", priority: 0.9 },
   { path: "/conditions", changeFrequency: "monthly", priority: 0.8 },
   { path: "/patient-resources", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.9 },

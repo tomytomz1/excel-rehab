@@ -2,7 +2,7 @@ import Image from "next/image";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { ContactFormClient } from "./ContactFormClient";
-import { SITE_ADDRESS, PHONE, FAX, SITE_NAME } from "@/lib/constants";
+import { SITE_ADDRESS, PHONE, FAX, SITE_NAME, BUSINESS_HOURS } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -89,7 +89,7 @@ export default function ContactPage() {
                 </p>
                 <p className="text-neutral-600">Fax: {FAX}</p>
                 <p className="text-neutral-600 mt-2">
-                  Business Hours: 9am to 5pm (or by appointment)
+                  Business Hours: {BUSINESS_HOURS.fullLabel}
                 </p>
               </div>
               <div className="rounded-xl overflow-hidden border border-neutral-200 aspect-[4/3] min-h-[280px]">

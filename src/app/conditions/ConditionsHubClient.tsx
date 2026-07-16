@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView, useReducedMotion } from "framer-motion";
 import {
   Activity,
@@ -110,6 +111,14 @@ export function ConditionsHubClient() {
             />
           ))}
         </div>
+        <p className="mt-10 text-lg text-neutral-700 leading-relaxed">
+          <Link
+            href="/physical-therapy-novi-mi"
+            className="text-brand-blue font-semibold hover:underline"
+          >
+            Learn more about on-site physical therapy in Novi.
+          </Link>
+        </p>
       </div>
     </SectionWrapper>
   );

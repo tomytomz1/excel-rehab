@@ -69,11 +69,22 @@ export function Footer() {
           <div>
             <h3 className="font-semibold text-white mb-4">Services</h3>
             <ul className="space-y-2">
-              {FIRST_SIX_SERVICES.map(({ name, slug }) => (
-                <li key={slug} className="text-neutral-300 text-base">
-                  {name}
-                </li>
-              ))}
+              {FIRST_SIX_SERVICES.map(({ name, slug, href }) =>
+                href ? (
+                  <li key={slug}>
+                    <Link
+                      href={href}
+                      className="text-neutral-300 hover:text-white text-base transition-colors"
+                    >
+                      {name}
+                    </Link>
+                  </li>
+                ) : (
+                  <li key={slug} className="text-neutral-300 text-base">
+                    {name}
+                  </li>
+                )
+              )}
             </ul>
           </div>
 
