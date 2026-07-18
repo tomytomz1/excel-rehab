@@ -3,7 +3,7 @@ import Link from "next/link";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { JsonLd } from "@/components/seo/JsonLd";
-import { pageMetadata, absoluteUrl } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/seo";
 import {
   SITE_NAME,
   SITE_ADDRESS,
@@ -18,39 +18,12 @@ import {
   CONDITION_CATEGORIES,
   getConditionsByCategory,
 } from "@/lib/data/conditions";
-import { LOCATIONS } from "@/lib/data/locations";
+import { type Location } from "@/lib/data/locations";
 
-export const metadata = pageMetadata({
-  path: "/physical-therapy-novi-mi",
-  title: "Physical Therapy in Novi, MI | Excel PM&R",
-  description:
-    "On-site physical therapy in Novi, Michigan at Excel Physical Medicine and Rehab. Call 248.624.5176 to ask about scheduling and insurance.",
-  image: "/images/knee-therapy.jpg",
-  imageAlt: "Physical therapist assisting a patient with knee mobility",
-});
-
-const FAQS = [
-  {
-    q: "Does Excel Rehab offer physical therapy at its Novi office?",
-    a: "Yes. Excel Physical Medicine and Rehab lists on-site physical therapy among the services available at its Novi location.",
-  },
-  {
-    q: "What conditions does Excel PM&R evaluate?",
-    a: "Excel PM&R evaluates a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be included in an individualized plan when clinically appropriate.",
-  },
-  {
-    q: "Does Excel Rehab accept insurance?",
-    a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
-  },
-  {
-    q: "Where is Excel Physical Medicine and Rehab located?",
-    a: "The office is located at 31190 Novi Road, Novi, Michigan 48377.",
-  },
-  {
-    q: "How can I request an appointment?",
-    a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
-  },
-] as const;
+const primaryCta =
+  "inline-flex items-center justify-center rounded-lg bg-brand-green px-8 py-3.5 text-white font-semibold hover:opacity-90 transition-opacity";
+const outlineCta =
+  "inline-flex items-center justify-center rounded-lg border-2 border-brand-blue px-8 py-3.5 text-brand-blue font-semibold hover:bg-brand-blue/10 transition-colors";
 
 const APPROACH_CARDS = [
   {
@@ -67,36 +40,56 @@ const APPROACH_CARDS = [
   },
 ] as const;
 
-const WHY_CHOOSE = [
-  {
-    title: "On-Site Physical Therapy",
-    body: "Physical therapy is available on-site at the Novi office as one of the services offered by the practice.",
-  },
-  {
-    title: "Comprehensive Physiatric Assessment",
-    body: "A physiatric assessment may help determine an appropriate, individualized course of action.",
-  },
-  {
-    title: "Patient-Centered Care",
-    body: "Care is individualized around each patient's functional needs, goals, and circumstances.",
-  },
-  {
-    title: "Function-Focused Rehabilitation",
-    body: "The approach emphasizes mobility, function, independence, and quality of life.",
-  },
-  {
-    title: "PM&R Practice",
-    body: "Excel is a physical medicine and rehabilitation practice that also offers on-site physical therapy.",
-  },
-  {
-    title: "Convenient Novi Location",
-    body: "The office is located on Novi Road in Novi, Michigan, with parking on-site.",
-  },
-] as const;
+export function LocalPtPage({ location }: { location: Location }) {
+  const {
+    slug,
+    city,
+    h1,
+    breadcrumbLabel,
+    areaServed,
+    introEyebrow,
+    introHeading,
+    introParagraphs,
+    imageAlt,
+    pmrParagraph,
+    serviceAreaHeading,
+    serviceAreaParagraphs,
+    conditionsIntro,
+    whyChooseIntro,
+    whyChooseServingBody,
+    faqs,
+    siblings,
+  } = location;
 
-export default function PhysicalTherapyNoviPage() {
   const phoneTel = PHONE.replace(/\./g, "");
-  const pageUrl = absoluteUrl("/physical-therapy-novi-mi");
+  const pageUrl = absoluteUrl(`/${slug}`);
+
+  const whyChoose = [
+    {
+      title: "Physical Therapy Within a PM&R Practice",
+      body: "Physical therapy is offered on-site as one of the services of a physical medicine and rehabilitation practice.",
+    },
+    {
+      title: "Comprehensive Physiatric Assessment",
+      body: "A physiatric assessment may help determine an appropriate, individualized course of action.",
+    },
+    {
+      title: "Patient-Centered Care",
+      body: "Care is individualized around each patient's functional needs, goals, and circumstances.",
+    },
+    {
+      title: "Function-Focused Rehabilitation",
+      body: "The approach emphasizes mobility, function, independence, and quality of life.",
+    },
+    {
+      title: `Serving ${city} Patients`,
+      body: whyChooseServingBody,
+    },
+    {
+      title: "Conveniently Located in Novi",
+      body: `A short drive from ${city}, the office is located on Novi Road in Novi, Michigan, with parking on-site.`,
+    },
+  ];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -113,7 +106,7 @@ export default function PhysicalTherapyNoviPage() {
           {
             "@type": "ListItem",
             position: 2,
-            name: "Physical Therapy in Novi, MI",
+            name: breadcrumbLabel,
             item: pageUrl,
           },
         ],
@@ -121,15 +114,15 @@ export default function PhysicalTherapyNoviPage() {
       {
         "@type": "Service",
         "@id": `${pageUrl}#service`,
-        name: "On-Site Physical Therapy",
+        name: `Physical Therapy Near ${city}`,
         serviceType: "Physical Therapy",
         url: pageUrl,
         provider: { "@id": BUSINESS_SCHEMA_ID },
-        areaServed: "Novi, Michigan",
+        areaServed,
       },
       {
         "@type": "FAQPage",
-        mainEntity: FAQS.map(({ q, a }) => ({
+        mainEntity: faqs.map(({ q, a }) => ({
           "@type": "Question",
           name: q,
           acceptedAnswer: {
@@ -141,20 +134,15 @@ export default function PhysicalTherapyNoviPage() {
     ],
   };
 
-  const primaryCta =
-    "inline-flex items-center justify-center rounded-lg bg-brand-green px-8 py-3.5 text-white font-semibold hover:opacity-90 transition-opacity";
-  const outlineCta =
-    "inline-flex items-center justify-center rounded-lg border-2 border-brand-blue px-8 py-3.5 text-brand-blue font-semibold hover:bg-brand-blue/10 transition-colors";
-
   return (
     <div>
       <JsonLd data={jsonLd} />
 
       <InnerPageHero
-        title="Physical Therapy in Novi, Michigan"
+        title={h1}
         breadcrumbs={[
           { label: "Home", href: "/" },
-          { label: "Physical Therapy in Novi, MI" },
+          { label: breadcrumbLabel },
         ]}
         variant="brand-blue"
       />
@@ -165,24 +153,21 @@ export default function PhysicalTherapyNoviPage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <p className="text-sm font-semibold uppercase tracking-wide text-brand-blue mb-3">
-                On-Site Physical Therapy
+                {introEyebrow}
               </p>
               <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
-                Physical Therapy Within a PM&amp;R Practice
+                {introHeading}
               </h2>
-              <p className="text-lg text-neutral-700 leading-relaxed mb-4">
-                Excel Physical Medicine and Rehab provides on-site physical
-                therapy in Novi, Michigan as part of a patient-centered,
-                function-focused approach to rehabilitation. Care is
-                individualized to support mobility, function, independence, and
-                quality of life.
-              </p>
-              <p className="text-lg text-neutral-700 leading-relaxed mb-8">
-                A comprehensive physiatric assessment may help determine an
-                appropriate course of action. Physical therapy may be included
-                when clinically appropriate based on the individual&apos;s
-                condition, functional needs, and treatment goals.
-              </p>
+              {introParagraphs.map((paragraph, i) => (
+                <p
+                  key={i}
+                  className={`text-lg text-neutral-700 leading-relaxed ${
+                    i === introParagraphs.length - 1 ? "mb-8" : "mb-4"
+                  }`}
+                >
+                  {paragraph}
+                </p>
+              ))}
               <div className="flex flex-col sm:flex-row gap-4">
                 <Link href="/contact" className={primaryCta}>
                   Schedule an Appointment
@@ -193,11 +178,10 @@ export default function PhysicalTherapyNoviPage() {
               </div>
             </div>
             <div>
-              {/* TODO: Replace this representative image with an approved original photo of the Excel Rehab physical therapy facility when available. */}
               <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-neutral-200/80 shadow-sm">
                 <Image
                   src="/images/knee-therapy.jpg"
-                  alt="Physical therapist assisting a patient with knee mobility"
+                  alt={imageAlt}
                   width={900}
                   height={600}
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -216,11 +200,8 @@ export default function PhysicalTherapyNoviPage() {
             <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
               Physician-Led Physical Medicine and Rehabilitation
             </h2>
-            <p className="text-lg text-neutral-700 leading-relaxed mb-4">
-              Excel is a physical medicine and rehabilitation (PM&amp;R) practice
-              that also offers on-site physical therapy in Novi, Michigan.
-              Physiatry focuses on the non-operative evaluation and management of
-              a wide range of conditions that can affect movement and function.
+            <p className="text-lg text-neutral-700 leading-relaxed mb-6">
+              {pmrParagraph}
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
               The practice is led by{" "}
@@ -284,10 +265,7 @@ export default function PhysicalTherapyNoviPage() {
             Conditions Evaluated and Managed at Excel PM&amp;R
           </h2>
           <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-10">
-            Excel PM&amp;R evaluates and manages a range of spine, joint,
-            musculoskeletal, neurological, and injury-related conditions.
-            Physical therapy may be included in an individualized treatment plan
-            when clinically appropriate.
+            {conditionsIntro}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {CONDITION_CATEGORIES.map((category) => {
@@ -341,11 +319,14 @@ export default function PhysicalTherapyNoviPage() {
       {/* E. Why Choose */}
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-10">
+          <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
             Why Choose Excel Physical Medicine and Rehab?
           </h2>
+          <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-10">
+            {whyChooseIntro}
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {WHY_CHOOSE.map((item) => (
+            {whyChoose.map((item) => (
               <article
                 key={item.title}
                 className="rounded-xl bg-white border border-neutral-200/80 shadow-sm p-6 lg:p-8 h-full"
@@ -362,8 +343,48 @@ export default function PhysicalTherapyNoviPage() {
         </div>
       </SectionWrapper>
 
-      {/* F. Insurance */}
+      {/* F. Service Area */}
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl">
+            <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
+              {serviceAreaHeading}
+            </h2>
+            {serviceAreaParagraphs.map((paragraph, i) => (
+              <p
+                key={i}
+                className="text-lg text-neutral-700 leading-relaxed mb-4"
+              >
+                {paragraph}
+              </p>
+            ))}
+            <p className="text-lg text-neutral-700 leading-relaxed mt-6">
+              Patients also visit our{" "}
+              <Link
+                href="/physical-therapy-novi-mi"
+                className="text-brand-blue font-semibold hover:underline"
+              >
+                physical therapy in Novi
+              </Link>{" "}
+              page. Nearby, we also offer{" "}
+              {siblings.map((sibling, i) => (
+                <span key={sibling.slug}>
+                  <Link
+                    href={`/${sibling.slug}`}
+                    className="text-brand-blue font-semibold hover:underline"
+                  >
+                    {sibling.anchor}
+                  </Link>
+                  {i < siblings.length - 1 ? " and " : "."}
+                </span>
+              ))}
+            </p>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      {/* G. Insurance */}
+      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
             Insurance and Payor Sources
@@ -395,8 +416,8 @@ export default function PhysicalTherapyNoviPage() {
         </div>
       </SectionWrapper>
 
-      {/* G. Visit */}
-      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
+      {/* H. Visit */}
+      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-8">
             Visit Excel Rehab in Novi
@@ -453,14 +474,14 @@ export default function PhysicalTherapyNoviPage() {
         </div>
       </SectionWrapper>
 
-      {/* H. FAQ */}
-      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
+      {/* I. FAQ */}
+      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-8">
             Frequently Asked Questions
           </h2>
           <div className="max-w-4xl space-y-4">
-            {FAQS.map(({ q, a }) => (
+            {faqs.map(({ q, a }) => (
               <details
                 key={q}
                 className="group rounded-xl bg-white border border-neutral-200/80 shadow-sm"
@@ -487,59 +508,16 @@ export default function PhysicalTherapyNoviPage() {
         </div>
       </SectionWrapper>
 
-      {/* H2. Areas We Serve */}
-      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
-            Areas We Serve
-          </h2>
-          <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-8">
-            The office is located in Novi, Michigan and welcomes patients
-            traveling a short drive from nearby western Oakland County
-            communities. Learn more about {" "}
-            {LOCATIONS.map((location, i) => (
-              <span key={location.slug}>
-                <Link
-                  href={`/${location.slug}`}
-                  className="text-brand-blue font-semibold hover:underline"
-                >
-                  {location.noviLinkAnchor}
-                </Link>
-                {i < LOCATIONS.length - 2
-                  ? ", "
-                  : i === LOCATIONS.length - 2
-                    ? ", and "
-                    : "."}
-              </span>
-            ))}
-          </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {LOCATIONS.map((location) => (
-              <Link
-                key={location.slug}
-                href={`/${location.slug}`}
-                className="flex items-center justify-between gap-3 rounded-xl bg-white border border-neutral-200/80 shadow-sm px-5 py-4 text-base font-semibold text-neutral-900 hover:border-brand-blue hover:text-brand-blue transition-colors"
-              >
-                <span>{location.city}</span>
-                <span className="text-brand-blue" aria-hidden>
-                  &rarr;
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </SectionWrapper>
-
-      {/* I. Final CTA */}
+      {/* J. Final CTA */}
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-brand-blue">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white">
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-bold leading-tight mb-4">
             Ready to Discuss Your Rehabilitation Needs?
           </h2>
           <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
-            Contact Excel Physical Medicine and Rehab to ask about on-site
-            physical therapy, scheduling, and insurance verification at the Novi
-            office.
+            Contact Excel Physical Medicine and Rehab to ask about physical
+            therapy, scheduling, and insurance verification. Care is provided at
+            the Novi office, a short drive from {city}.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link href="/contact" className={primaryCta}>

@@ -8,6 +8,7 @@ import {
   TAGLINES,
 } from "@/lib/constants";
 import { SERVICES } from "@/lib/data/services";
+import { AREAS_WE_SERVE } from "@/lib/data/locations";
 import { cn } from "@/lib/utils";
 
 const QUICK_LINKS = [
@@ -31,7 +32,7 @@ export function Footer() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 lg:py-14">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
           {/* Column 1: Logo + tagline */}
           <div className="space-y-4">
             <Link href="/" className="inline-block" aria-label={`${SITE_NAME} home`}>
@@ -88,7 +89,24 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Column 4: Contact */}
+          {/* Column 4: Areas We Serve */}
+          <div>
+            <h3 className="font-semibold text-white mb-4">Areas We Serve</h3>
+            <ul className="space-y-2">
+              {AREAS_WE_SERVE.map(({ label, href }) => (
+                <li key={href}>
+                  <Link
+                    href={href}
+                    className="text-neutral-300 hover:text-white text-base transition-colors"
+                  >
+                    {label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Column 5: Contact */}
           <div>
             <h3 className="font-semibold text-white mb-4">Contact</h3>
             <address className="not-italic space-y-2 text-base text-neutral-300">
