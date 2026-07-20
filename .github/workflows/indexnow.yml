@@ -1,0 +1,28 @@
+name: IndexNow submit
+
+# Fires when Vercel reports a deployment status. We only act on a successful
+# Production deploy, so the new pages are guaranteed live before we ping
+# IndexNow. Also runnable manually from the Actions tab.
+on:
+  deployment_status:
+  workflow_dispatch:
+
+jobs:
+  submit:
+    # Skip preview deploys and non-success states.
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' &&
+       contains(github.event.deployment_status.environment, 'Production'))
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Submit URLs to IndexNow
+        run: node scripts/indexnow.mjs
