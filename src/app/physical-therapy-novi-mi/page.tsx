@@ -25,8 +25,8 @@ export const metadata = pageMetadata({
   title: "Physical Therapy in Novi, MI | Excel PM&R",
   description:
     "On-site physical therapy in Novi, Michigan at Excel Physical Medicine and Rehab. Call 248.624.5176 to ask about scheduling and insurance.",
-  image: "/images/knee-therapy.jpg",
-  imageAlt: "Physical therapist assisting a patient with knee mobility",
+  image: "/images/clinic-exterior.png",
+  imageAlt: "Exterior of the Excel PM&R Physical Therapy building in Novi at dusk",
 });
 
 const FAQS = [
@@ -182,13 +182,12 @@ export default function PhysicalTherapyNoviPage() {
               </div>
             </div>
             <div>
-              {/* TODO: Replace this representative image with an approved original photo of the Excel PM&R physical therapy facility when available. */}
               <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-neutral-200/80 shadow-sm">
                 <Image
-                  src="/images/knee-therapy.jpg"
-                  alt="Physical therapist assisting a patient with knee mobility"
-                  width={900}
-                  height={600}
+                  src="/images/clinic-exterior.png"
+                  alt="Exterior of the Excel PM&R Physical Therapy building in Novi at dusk"
+                  width={1024}
+                  height={683}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="h-full w-full rounded-xl object-cover"
                 />
@@ -502,6 +501,16 @@ export default function PhysicalTherapyNoviPage() {
               </span>
             ))}
           </p>
+          <div className="mb-8 relative aspect-[3/2] w-full max-w-3xl overflow-hidden rounded-xl border border-neutral-200/80 shadow-sm">
+            <Image
+              src="/images/care-team.png"
+              alt="The Excel PM&R physician and physical therapy care team in the clinic gym"
+              width={1024}
+              height={683}
+              sizes="(max-width: 768px) 100vw, 768px"
+              className="h-full w-full rounded-xl object-cover"
+            />
+          </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {LOCATIONS.map((location) => (
               <Link

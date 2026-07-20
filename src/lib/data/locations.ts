@@ -19,6 +19,13 @@ export interface LocationServeLink {
   anchor: string;
 }
 
+export interface LocationImage {
+  /** Public path to the image (served from /public). */
+  src: string;
+  /** Descriptive alt text (describes the image, not the city). */
+  alt: string;
+}
+
 export interface Location {
   /** Route segment, also used to build the path: `/${slug}`. */
   slug: string;
@@ -30,8 +37,10 @@ export interface Location {
   title: string;
   /** Meta description (~145-160 chars), unique per city. */
   description: string;
-  /** Descriptive alt text for the content image (describes the image, not the city). */
-  imageAlt: string;
+  /** Primary content photo (intro image and OG/social image). */
+  primaryImage: LocationImage;
+  /** Secondary content photo shown mid-page in the service-area section. */
+  secondaryImage: LocationImage;
   /** The single page <h1>, rendered by InnerPageHero. */
   h1: string;
   /** Visible breadcrumb label for the current page. */
@@ -102,7 +111,14 @@ export const LOCATIONS: readonly Location[] = [
     title: "Physical Therapy Near Northville, MI | Excel PM&R",
     description:
       "Physical therapy near Northville, Michigan at Excel Physical Medicine and Rehab in nearby Novi. Individualized outpatient rehabilitation. Call 248.624.5176.",
-    imageAlt: "Physical therapist guiding a patient through knee mobility exercises",
+    primaryImage: {
+      src: "/images/therapy-session.png",
+      alt: "Physician guiding a patient through a supervised leg-raise exercise during a therapy session",
+    },
+    secondaryImage: {
+      src: "/images/clinic-entrance.png",
+      alt: "Entrance and storefront signage at Excel PM&R Physical Therapy, suite 31190",
+    },
     h1: "Physical Therapy Near Northville, Michigan",
     breadcrumbLabel: "Physical Therapy Near Northville, MI",
     areaServed: "Northville, Michigan",
@@ -168,7 +184,14 @@ export const LOCATIONS: readonly Location[] = [
     title: "Physical Therapy Near Farmington Hills, MI | Excel PM&R",
     description:
       "Physical therapy near Farmington Hills, Michigan at Excel Physical Medicine and Rehab in nearby Novi. Coordinated rehabilitation care. Call 248.624.5176.",
-    imageAlt: "Physical therapist assisting a patient during a guided rehabilitation session",
+    primaryImage: {
+      src: "/images/physician-spine-consult.png",
+      alt: "Physician reviewing a lumbar spine model with a patient during a consultation",
+    },
+    secondaryImage: {
+      src: "/images/care-team.png",
+      alt: "The Excel PM&R physician and physical therapy care team in the clinic gym",
+    },
     h1: "Physical Therapy Near Farmington Hills, Michigan",
     breadcrumbLabel: "Physical Therapy Near Farmington Hills, MI",
     areaServed: "Farmington Hills, Michigan",
@@ -236,7 +259,14 @@ export const LOCATIONS: readonly Location[] = [
     title: "Physical Therapy Near Wixom, MI | Excel PM&R",
     description:
       "Physical therapy near Wixom, Michigan at Excel Physical Medicine and Rehab in nearby Novi. Focused on mobility, pain reduction, and daily activity. Call 248.624.5176.",
-    imageAlt: "Physical therapist supporting a patient through a knee strengthening exercise",
+    primaryImage: {
+      src: "/images/therapy-gym-cardio.png",
+      alt: "Cardio and conditioning equipment in the Excel PM&R therapy gym",
+    },
+    secondaryImage: {
+      src: "/images/clinic-exterior.png",
+      alt: "Exterior of the Excel PM&R Physical Therapy building in Novi at dusk",
+    },
     h1: "Physical Therapy Near Wixom, Michigan",
     breadcrumbLabel: "Physical Therapy Near Wixom, MI",
     areaServed: "Wixom, Michigan",
@@ -302,7 +332,14 @@ export const LOCATIONS: readonly Location[] = [
     title: "Physical Therapy Near Walled Lake, MI | Excel PM&R",
     description:
       "Physical therapy near Walled Lake, Michigan at Excel Physical Medicine and Rehab in nearby Novi. Personalized therapy for balance, joint, and spine care. Call 248.624.5176.",
-    imageAlt: "Physical therapist helping a patient with a lower-body mobility exercise",
+    primaryImage: {
+      src: "/images/therapy-traction-table.png",
+      alt: "Mechanical traction therapy table and treatment equipment at Excel PM&R",
+    },
+    secondaryImage: {
+      src: "/images/therapy-gym-strength.png",
+      alt: "Strength-training machines and free weights in the Excel PM&R therapy gym",
+    },
     h1: "Physical Therapy Near Walled Lake, Michigan",
     breadcrumbLabel: "Physical Therapy Near Walled Lake, MI",
     areaServed: "Walled Lake, Michigan",
@@ -368,7 +405,14 @@ export const LOCATIONS: readonly Location[] = [
     title: "Physical Therapy Near Commerce Township, MI | Excel PM&R",
     description:
       "Physical therapy near Commerce Township, Michigan at Excel Physical Medicine and Rehab in nearby Novi. Serving the township and western Oakland County. Call 248.624.5176.",
-    imageAlt: "Physical therapist working with a patient on a knee rehabilitation exercise",
+    primaryImage: {
+      src: "/images/therapy-gym-strength.png",
+      alt: "Strength-training machines and free weights in the Excel PM&R therapy gym",
+    },
+    secondaryImage: {
+      src: "/images/clinic-sign.png",
+      alt: "Excel PM&R Physical Therapy sign on the building's brick exterior",
+    },
     h1: "Physical Therapy Near Commerce Township, Michigan",
     breadcrumbLabel: "Physical Therapy Near Commerce Township, MI",
     areaServed: "Commerce Township, Michigan",

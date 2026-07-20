@@ -51,7 +51,8 @@ export function LocalPtPage({ location }: { location: Location }) {
     introEyebrow,
     introHeading,
     introParagraphs,
-    imageAlt,
+    primaryImage,
+    secondaryImage,
     pmrParagraph,
     serviceAreaHeading,
     serviceAreaParagraphs,
@@ -179,10 +180,10 @@ export function LocalPtPage({ location }: { location: Location }) {
             <div>
               <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-neutral-200/80 shadow-sm">
                 <Image
-                  src="/images/knee-therapy.jpg"
-                  alt={imageAlt}
-                  width={900}
-                  height={600}
+                  src={primaryImage.src}
+                  alt={primaryImage.alt}
+                  width={1024}
+                  height={683}
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   className="h-full w-full rounded-xl object-cover"
                 />
@@ -395,6 +396,16 @@ export function LocalPtPage({ location }: { location: Location }) {
               </span>{" "}
               {accessParagraph}
             </p>
+            <div className="mt-6 relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-neutral-200/80 shadow-sm">
+              <Image
+                src={secondaryImage.src}
+                alt={secondaryImage.alt}
+                width={1024}
+                height={683}
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="h-full w-full rounded-xl object-cover"
+              />
+            </div>
             <div className="mt-6 rounded-xl bg-white border border-neutral-200/80 shadow-sm p-6 lg:p-8">
               <h3 className="text-xl font-semibold text-neutral-900 leading-tight mb-3">
                 Planning Your Visit from {city}
