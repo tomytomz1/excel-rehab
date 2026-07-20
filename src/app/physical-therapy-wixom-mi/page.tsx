@@ -8,8 +8,8 @@ export const metadata = pageMetadata({
   path: `/${location.slug}`,
   title: location.title,
   description: location.description,
-  image: "/images/knee-therapy.jpg",
-  imageAlt: location.imageAlt,
+  image: location.primaryImage.src,
+  imageAlt: location.primaryImage.alt,
 });
 
 export default function PhysicalTherapyWixomPage() {
