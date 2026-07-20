@@ -36,7 +36,7 @@ function buildJsonLdSchema() {
   const faxNumber = `+1-${FAX.replace(/\./g, "-")}`;
 
   const business = {
-    "@type": "MedicalBusiness",
+    "@type": "MedicalClinic",
     "@id": BUSINESS_SCHEMA_ID,
     name: SITE_NAME,
     description: SCHEMA_DESCRIPTION,
@@ -52,7 +52,7 @@ function buildJsonLdSchema() {
     faxNumber,
     url: WEBSITE_URL,
     image: absoluteUrl("/icon.png"),
-    medicalSpecialty: "PhysicalMedicine",
+    medicalSpecialty: ["Physiotherapy", "Musculoskeletal"],
     currenciesAccepted: "USD",
     paymentAccepted: "Insurance",
     hasMap: "https://www.google.com/maps?q=31190+Novi+Road+Novi+MI+48377",
@@ -68,13 +68,12 @@ function buildJsonLdSchema() {
   };
 
   const physician = {
-    "@type": "Physician",
+    "@type": "Person",
     "@id": PHYSICIAN_SCHEMA_ID,
     name: DOCTOR.name,
+    jobTitle: "Physiatrist (Physical Medicine & Rehabilitation)",
     url: absoluteUrl("/about"),
-    medicalSpecialty: "PhysicalMedicine",
     worksFor: { "@id": BUSINESS_SCHEMA_ID },
-    memberOf: { "@id": BUSINESS_SCHEMA_ID },
     hasCredential: DOCTOR.certifications.map((cert) => ({
       "@type": "EducationalOccupationalCredential",
       credentialCategory: "certification",
