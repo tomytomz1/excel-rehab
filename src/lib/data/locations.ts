@@ -54,6 +54,18 @@ export interface Location {
   serviceAreaParagraphs: readonly string[];
   /** Intro sentence above the conditions grid. */
   conditionsIntro: string;
+  /**
+   * One sentence placed under `conditionsIntro`, framing what care at the Novi
+   * office commonly addresses. Uses only condition names from conditions.ts and
+   * makes no epidemiological claims about the city's population.
+   */
+  conditionsEmphasis: string;
+  /**
+   * Conservative "getting to the Novi office from <City>" sentence(s) using only
+   * major, well-known named road corridors. Reinforces that the office is in
+   * Novi (no second office).
+   */
+  accessParagraph: string;
   /** Intro sentence above the why-choose grid. */
   whyChooseIntro: string;
   /** Body for the city-specific "Serving <City>" why-choose card. */
@@ -92,6 +104,10 @@ export const LOCATIONS: readonly Location[] = [
     ],
     conditionsIntro:
       "Northville-area patients are evaluated for a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be part of an individualized plan when clinically appropriate.",
+    conditionsEmphasis:
+      "Physical therapy at the Novi office commonly supports patients working to address spine and back conditions such as Acute and Chronic Neck and Low Back Pain, Herniated Discs, and Cervical and Lumbar Radiculopathy, when clinically appropriate.",
+    accessParagraph:
+      "The Novi office sits just north of Northville and is reachable via Novi Road, with convenient access from I-275 and M-14. Care is provided at the Novi location — there is no separate Northville office.",
     whyChooseIntro:
       "Reasons patients from Northville consider Excel Physical Medicine and Rehab for outpatient rehabilitation.",
     whyChooseServingBody:
@@ -150,6 +166,10 @@ export const LOCATIONS: readonly Location[] = [
     ],
     conditionsIntro:
       "Patients from Farmington Hills are evaluated for a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be part of an individualized plan when clinically appropriate.",
+    conditionsEmphasis:
+      "At the Novi office, physical therapy commonly helps patients working to address injury-related concerns such as Whiplash Injuries from motor vehicle accidents, Slip and Fall Injuries, Sports Injuries, and Muscle Strains and Tears, when clinically appropriate.",
+    accessParagraph:
+      "Farmington Hills lies east of Novi, and the Novi office is typically reached via I-696, M-5, and Grand River Avenue. All care is delivered at the Novi location; the practice does not maintain a Farmington Hills office.",
     whyChooseIntro:
       "Reasons Farmington Hills patients consider Excel Physical Medicine and Rehab for coordinated rehabilitation.",
     whyChooseServingBody:
@@ -208,6 +228,10 @@ export const LOCATIONS: readonly Location[] = [
     ],
     conditionsIntro:
       "Wixom-area patients are evaluated for a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be part of an individualized plan when clinically appropriate.",
+    conditionsEmphasis:
+      "Care at the Novi office frequently includes physical therapy for patients working to address joint and extremity concerns such as Joint Arthritis, Plantar Fasciitis, Tendonitis and Bursitis, and Frozen Shoulder, when clinically appropriate.",
+    accessParagraph:
+      "Wixom sits along the I-96 corridor, a short drive from the Novi office. To be clear on location, the practice is in Novi, not Wixom, and all care is provided at the Novi office.",
     whyChooseIntro:
       "Reasons Wixom residents consider Excel Physical Medicine and Rehab as a convenient nearby option.",
     whyChooseServingBody:
@@ -266,6 +290,10 @@ export const LOCATIONS: readonly Location[] = [
     ],
     conditionsIntro:
       "Walled Lake-area patients are evaluated for a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be part of an individualized plan when clinically appropriate.",
+    conditionsEmphasis:
+      "Physical therapy at the Novi office often supports patients working to address balance and mobility concerns such as Vestibular Rehabilitation and BPPV, Spasticity, and Joint Arthritis, when clinically appropriate.",
+    accessParagraph:
+      "Walled Lake lies just north of Novi, and the office is reachable via Novi Road and Pontiac Trail. There is no Walled Lake office; care is provided at the Novi location.",
     whyChooseIntro:
       "Reasons Walled Lake residents consider Excel Physical Medicine and Rehab for personalized therapy.",
     whyChooseServingBody:
@@ -324,6 +352,10 @@ export const LOCATIONS: readonly Location[] = [
     ],
     conditionsIntro:
       "Patients from Commerce Township are evaluated for a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be part of an individualized plan when clinically appropriate.",
+    conditionsEmphasis:
+      "Physical therapy at the Novi office commonly supports patients working to address a broad range of musculoskeletal concerns spanning the spine, joints, and injuries, such as Herniated Discs, Joint Arthritis, and Muscle Strains and Tears, when clinically appropriate.",
+    accessParagraph:
+      "Commerce Township is in western Oakland County, and the Novi office is reachable via M-5 and Pontiac Trail. Care is provided at the Novi location; there is no office in Commerce Township.",
     whyChooseIntro:
       "Reasons patients from Commerce Township consider Excel Physical Medicine and Rehab for outpatient rehabilitation.",
     whyChooseServingBody:

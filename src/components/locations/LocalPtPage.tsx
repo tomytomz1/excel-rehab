@@ -55,6 +55,8 @@ export function LocalPtPage({ location }: { location: Location }) {
     serviceAreaHeading,
     serviceAreaParagraphs,
     conditionsIntro,
+    conditionsEmphasis,
+    accessParagraph,
     whyChooseIntro,
     whyChooseServingBody,
     faqs,
@@ -264,8 +266,11 @@ export function LocalPtPage({ location }: { location: Location }) {
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
             Conditions Evaluated and Managed at Excel PM&amp;R
           </h2>
-          <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-10">
+          <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-4">
             {conditionsIntro}
+          </p>
+          <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-10">
+            {conditionsEmphasis}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {CONDITION_CATEGORIES.map((category) => {
@@ -358,6 +363,12 @@ export function LocalPtPage({ location }: { location: Location }) {
                 {paragraph}
               </p>
             ))}
+            <p className="text-lg text-neutral-700 leading-relaxed mb-4">
+              <span className="font-semibold text-neutral-900">
+                Getting here:
+              </span>{" "}
+              {accessParagraph}
+            </p>
             <p className="text-lg text-neutral-700 leading-relaxed mt-6">
               Patients also visit our{" "}
               <Link
