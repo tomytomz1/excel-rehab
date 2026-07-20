@@ -14,7 +14,11 @@ import {
   BUSINESS_SCHEMA_ID,
   BUSINESS_HOURS,
 } from "@/lib/constants";
+import { DOCTOR } from "@/lib/data/doctor";
 import { absoluteUrl } from "@/lib/seo";
+
+/** Stable schema.org node id for the lead physician. */
+const PHYSICIAN_SCHEMA_ID = `${WEBSITE_URL}/#physician`;
 
 const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
@@ -30,9 +34,9 @@ const SCHEMA_DESCRIPTION =
 function buildJsonLdSchema() {
   const telephone = `+1-${PHONE.replace(/\./g, "-")}`;
   const faxNumber = `+1-${FAX.replace(/\./g, "-")}`;
-  return {
-    "@context": "https://schema.org",
-    "@type": ["MedicalBusiness", "Physician"],
+
+  const business = {
+    "@type": "MedicalBusiness",
     "@id": BUSINESS_SCHEMA_ID,
     name: SITE_NAME,
     description: SCHEMA_DESCRIPTION,
@@ -47,11 +51,11 @@ function buildJsonLdSchema() {
     telephone,
     faxNumber,
     url: WEBSITE_URL,
+    image: absoluteUrl("/icon.png"),
     medicalSpecialty: "PhysicalMedicine",
     currenciesAccepted: "USD",
     paymentAccepted: "Insurance",
-    hasMap:
-      "https://www.google.com/maps?q=31190+Novi+Road+Novi+MI+48377",
+    hasMap: "https://www.google.com/maps?q=31190+Novi+Road+Novi+MI+48377",
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
@@ -60,6 +64,35 @@ function buildJsonLdSchema() {
         closes: BUSINESS_HOURS.closes,
       },
     ],
+    employee: { "@id": PHYSICIAN_SCHEMA_ID },
+  };
+
+  const physician = {
+    "@type": "Physician",
+    "@id": PHYSICIAN_SCHEMA_ID,
+    name: DOCTOR.name,
+    url: absoluteUrl("/about"),
+    medicalSpecialty: "PhysicalMedicine",
+    worksFor: { "@id": BUSINESS_SCHEMA_ID },
+    memberOf: { "@id": BUSINESS_SCHEMA_ID },
+    hasCredential: DOCTOR.certifications.map((cert) => ({
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: "certification",
+      name: cert,
+    })),
+    alumniOf: DOCTOR.training.map((school) => ({
+      "@type": "EducationalOrganization",
+      name: school.name,
+    })),
+    affiliation: DOCTOR.affiliations.map((hospital) => ({
+      "@type": "Hospital",
+      name: hospital,
+    })),
+  };
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [business, physician],
   };
 }
 

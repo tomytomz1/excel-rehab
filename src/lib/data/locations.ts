@@ -66,11 +66,29 @@ export interface Location {
    * Novi (no second office).
    */
   accessParagraph: string;
+  /**
+   * Unique per-city "planning your visit" paragraph: verified directions
+   * context plus the on-site parking note. Kept truthful and city-specific to
+   * add genuine local value beyond shared logistics.
+   */
+  visitPlanningParagraph: string;
+  /**
+   * City-relevant subset of condition slugs (must exist in conditions.ts).
+   * Drives a unique conditions grid per page rather than the full 19-item list.
+   * Reuses the emphasis chosen per city.
+   */
+  conditionSlugs: readonly string[];
+  /**
+   * Optional, locally relevant hospital-affiliation note surfaced as text in
+   * the physician section (e.g. Farmington Hills → Beaumont Farmington Hills).
+   * Truthful values from doctor.ts only.
+   */
+  localAffiliationNote?: string;
   /** Intro sentence above the why-choose grid. */
   whyChooseIntro: string;
   /** Body for the city-specific "Serving <City>" why-choose card. */
   whyChooseServingBody: string;
-  /** City-specific FAQ entries (also drive FAQPage JSON-LD). */
+  /** City-specific FAQ entries (visible on the page for humans; no FAQPage schema). */
   faqs: readonly LocationFaq[];
   /** 1-2 contextually adjacent sibling cities for cross-linking. */
   siblings: readonly LocationServeLink[];
@@ -88,7 +106,7 @@ export const LOCATIONS: readonly Location[] = [
     h1: "Physical Therapy Near Northville, Michigan",
     breadcrumbLabel: "Physical Therapy Near Northville, MI",
     areaServed: "Northville, Michigan",
-    noviLinkAnchor: "physical therapy near Northville",
+    noviLinkAnchor: "care for patients traveling from Northville",
     introEyebrow: "Serving Northville & Nearby Communities",
     introHeading: "Individualized Outpatient Rehabilitation for Northville Patients",
     introParagraphs: [
@@ -107,7 +125,19 @@ export const LOCATIONS: readonly Location[] = [
     conditionsEmphasis:
       "Physical therapy at the Novi office commonly supports patients working to address spine and back conditions such as Acute and Chronic Neck and Low Back Pain, Herniated Discs, and Cervical and Lumbar Radiculopathy, when clinically appropriate.",
     accessParagraph:
-      "The Novi office sits just north of Northville and is reachable via Novi Road, with convenient access from I-275 and M-14. Care is provided at the Novi location — there is no separate Northville office.",
+      "The Novi office sits just north of Northville, a short drive of roughly four miles. It is reachable via Novi Road, with I-96 access at the Novi Road interchange (Exit 162) and nearby Beck Road (Exit 160). Care is provided at the Novi location — there is no separate Northville office.",
+    visitPlanningParagraph:
+      "Coming from Northville, most patients drive north on Novi Road or take I-96 to the Novi Road exit (Exit 162) a few miles away. The Novi office has on-site parking, so plan to park at the building; call 248.624.5176 if you would like directions before your visit.",
+    conditionSlugs: [
+      "acute-chronic-neck-low-back-pain",
+      "neck-lumbar-degenerative-joint-disease",
+      "herniated-discs",
+      "cervical-lumbar-radiculopathy",
+      "joint-arthritis",
+      "muscle-strains-tears",
+      "sports-injuries",
+      "tendonitis-bursitis",
+    ],
     whyChooseIntro:
       "Reasons patients from Northville consider Excel Physical Medicine and Rehab for outpatient rehabilitation.",
     whyChooseServingBody:
@@ -124,14 +154,6 @@ export const LOCATIONS: readonly Location[] = [
       {
         q: "What conditions does Excel PM&R evaluate for Northville patients?",
         a: "Excel PM&R evaluates a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be included in an individualized plan when clinically appropriate.",
-      },
-      {
-        q: "Does Excel Rehab accept insurance?",
-        a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
-      },
-      {
-        q: "How can Northville patients request an appointment?",
-        a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
       },
     ],
     siblings: [
@@ -169,7 +191,21 @@ export const LOCATIONS: readonly Location[] = [
     conditionsEmphasis:
       "At the Novi office, physical therapy commonly helps patients working to address injury-related concerns such as Whiplash Injuries from motor vehicle accidents, Slip and Fall Injuries, Sports Injuries, and Muscle Strains and Tears, when clinically appropriate.",
     accessParagraph:
-      "Farmington Hills lies east of Novi, and the Novi office is typically reached via I-696, M-5, and Grand River Avenue. All care is delivered at the Novi location; the practice does not maintain a Farmington Hills office.",
+      "Farmington Hills lies east of Novi, and the Novi office is typically reached via I-696, M-5, and Grand River Avenue, which connect the two communities near the large I-96/I-275/I-696/M-5 interchange along the Novi–Farmington Hills line. All care is delivered at the Novi location; the practice does not maintain a Farmington Hills office.",
+    visitPlanningParagraph:
+      "From Farmington Hills, patients typically travel west on Grand River Avenue or take I-696/M-5 to I-96 westbound, then reach the office from the Novi Road area. On-site parking is available at the Novi office; call 248.624.5176 for directions before your visit.",
+    conditionSlugs: [
+      "whiplash-injuries-mva",
+      "slip-fall-injuries",
+      "sports-injuries",
+      "muscle-strains-tears",
+      "multiple-orthopedic-fractures",
+      "acute-chronic-neck-low-back-pain",
+      "joint-arthritis",
+      "patellofemoral-dysfunction",
+    ],
+    localAffiliationNote:
+      "Dr. Evangelista's hospital affiliations include Beaumont Farmington Hills, a hospital serving the Farmington Hills community.",
     whyChooseIntro:
       "Reasons Farmington Hills patients consider Excel Physical Medicine and Rehab for coordinated rehabilitation.",
     whyChooseServingBody:
@@ -186,14 +222,6 @@ export const LOCATIONS: readonly Location[] = [
       {
         q: "What does coordinated rehabilitation mean at Excel PM&R?",
         a: "Physiatric evaluation and on-site physical therapy are organized within one practice. This allows assessment, management, and therapy to be coordinated around a patient's functional goals when clinically appropriate.",
-      },
-      {
-        q: "Does Excel Rehab accept insurance?",
-        a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
-      },
-      {
-        q: "How can Farmington Hills patients request an appointment?",
-        a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
       },
     ],
     siblings: [
@@ -231,7 +259,19 @@ export const LOCATIONS: readonly Location[] = [
     conditionsEmphasis:
       "Care at the Novi office frequently includes physical therapy for patients working to address joint and extremity concerns such as Joint Arthritis, Plantar Fasciitis, Tendonitis and Bursitis, and Frozen Shoulder, when clinically appropriate.",
     accessParagraph:
-      "Wixom sits along the I-96 corridor, a short drive from the Novi office. To be clear on location, the practice is in Novi, not Wixom, and all care is provided at the Novi office.",
+      "Wixom sits along the I-96 corridor just northwest of Novi, a short drive from the Novi office via I-96 eastbound toward the Novi Road area. To be clear on location, the practice is in Novi, not Wixom, and all care is provided at the Novi office.",
+    visitPlanningParagraph:
+      "Most Wixom patients reach the office by taking I-96 east a short distance from the Wixom Road area, then continuing to the Novi Road exit (Exit 162). The Novi office has on-site parking; call 248.624.5176 for directions if it helps to plan your route.",
+    conditionSlugs: [
+      "joint-arthritis",
+      "plantar-fasciitis",
+      "tendonitis-bursitis",
+      "frozen-shoulder",
+      "patellofemoral-dysfunction",
+      "carpal-tunnel-syndrome",
+      "muscle-strains-tears",
+      "acute-chronic-neck-low-back-pain",
+    ],
     whyChooseIntro:
       "Reasons Wixom residents consider Excel Physical Medicine and Rehab as a convenient nearby option.",
     whyChooseServingBody:
@@ -248,14 +288,6 @@ export const LOCATIONS: readonly Location[] = [
       {
         q: "What does physical therapy focus on for Wixom patients?",
         a: "When clinically appropriate, care focuses on supporting mobility, working to reduce pain, and helping patients return to daily activity as part of an individualized plan.",
-      },
-      {
-        q: "Does Excel Rehab accept insurance?",
-        a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
-      },
-      {
-        q: "How can Wixom patients request an appointment?",
-        a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
       },
     ],
     siblings: [
@@ -274,7 +306,7 @@ export const LOCATIONS: readonly Location[] = [
     h1: "Physical Therapy Near Walled Lake, Michigan",
     breadcrumbLabel: "Physical Therapy Near Walled Lake, MI",
     areaServed: "Walled Lake, Michigan",
-    noviLinkAnchor: "physical therapy near Walled Lake",
+    noviLinkAnchor: "rehabilitation options for Walled Lake residents",
     introEyebrow: "Serving Walled Lake Residents",
     introHeading: "Personalized Therapy for Walled Lake Patients",
     introParagraphs: [
@@ -285,7 +317,7 @@ export const LOCATIONS: readonly Location[] = [
       "Excel is a physical medicine and rehabilitation (PM&R) practice in Novi that also offers on-site physical therapy for patients traveling from Walled Lake. Physiatry focuses on the non-operative evaluation and management of conditions affecting movement and function.",
     serviceAreaHeading: "Serving Walled Lake and Neighboring Communities",
     serviceAreaParagraphs: [
-      "Walled Lake lies just northwest of Novi in Oakland County. The Novi office is a short drive away, making personalized outpatient therapy an accessible option for Walled Lake residents.",
+      "Walled Lake lies just north of Novi in Oakland County. The Novi office is a short drive away, making personalized outpatient therapy an accessible option for Walled Lake residents.",
       "There is no Walled Lake office; care is provided at the Novi location, which offers on-site parking. Residents of Walled Lake are welcome to call to ask about scheduling and directions.",
     ],
     conditionsIntro:
@@ -293,7 +325,19 @@ export const LOCATIONS: readonly Location[] = [
     conditionsEmphasis:
       "Physical therapy at the Novi office often supports patients working to address balance and mobility concerns such as Vestibular Rehabilitation and BPPV, Spasticity, and Joint Arthritis, when clinically appropriate.",
     accessParagraph:
-      "Walled Lake lies just north of Novi, and the office is reachable via Novi Road and Pontiac Trail. There is no Walled Lake office; care is provided at the Novi location.",
+      "Walled Lake lies just north of Novi, and the office is reachable heading south via Novi Road or Pontiac Trail. There is no Walled Lake office; care is provided at the Novi location.",
+    visitPlanningParagraph:
+      "From Walled Lake, the Novi office is a short drive south, typically via Novi Road or Pontiac Trail. On-site parking is available at the office; call 248.624.5176 for directions if you would like help planning your route.",
+    conditionSlugs: [
+      "vestibular-rehabilitation-bppv",
+      "spasticity",
+      "joint-arthritis",
+      "acute-chronic-neck-low-back-pain",
+      "herniated-discs",
+      "cervical-lumbar-radiculopathy",
+      "tendonitis-bursitis",
+      "muscle-strains-tears",
+    ],
     whyChooseIntro:
       "Reasons Walled Lake residents consider Excel Physical Medicine and Rehab for personalized therapy.",
     whyChooseServingBody:
@@ -305,19 +349,11 @@ export const LOCATIONS: readonly Location[] = [
       },
       {
         q: "How far is the Novi office from Walled Lake?",
-        a: "Walled Lake lies just northwest of Novi, so the office at 31190 Novi Road is a short drive away. On-site parking is available. Call 248.624.5176 for directions.",
+        a: "Walled Lake lies just north of Novi, so the office at 31190 Novi Road is a short drive away. On-site parking is available. Call 248.624.5176 for directions.",
       },
       {
         q: "What does personalized therapy involve for Walled Lake patients?",
         a: "Care is individualized around each patient's functional needs and goals, with attention to balance, joint, spine, and mobility concerns where clinically appropriate, as part of an individualized plan.",
-      },
-      {
-        q: "Does Excel Rehab accept insurance?",
-        a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
-      },
-      {
-        q: "How can Walled Lake patients request an appointment?",
-        a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
       },
     ],
     siblings: [
@@ -355,7 +391,19 @@ export const LOCATIONS: readonly Location[] = [
     conditionsEmphasis:
       "Physical therapy at the Novi office commonly supports patients working to address a broad range of musculoskeletal concerns spanning the spine, joints, and injuries, such as Herniated Discs, Joint Arthritis, and Muscle Strains and Tears, when clinically appropriate.",
     accessParagraph:
-      "Commerce Township is in western Oakland County, and the Novi office is reachable via M-5 and Pontiac Trail. Care is provided at the Novi location; there is no office in Commerce Township.",
+      "Commerce Township is in western Oakland County, north of Novi, and the Novi office is reachable heading south via M-5 or Pontiac Trail. Care is provided at the Novi location; there is no office in Commerce Township.",
+    visitPlanningParagraph:
+      "From Commerce Township, patients commonly travel south toward Novi on M-5 or Pontiac Trail to reach the office. On-site parking is available at the Novi office; call 248.624.5176 for directions if you would like to plan your route in advance.",
+    conditionSlugs: [
+      "herniated-discs",
+      "joint-arthritis",
+      "muscle-strains-tears",
+      "acute-chronic-neck-low-back-pain",
+      "cervical-lumbar-radiculopathy",
+      "sports-injuries",
+      "plantar-fasciitis",
+      "slip-fall-injuries",
+    ],
     whyChooseIntro:
       "Reasons patients from Commerce Township consider Excel Physical Medicine and Rehab for outpatient rehabilitation.",
     whyChooseServingBody:
@@ -372,14 +420,6 @@ export const LOCATIONS: readonly Location[] = [
       {
         q: "Which communities near Commerce Township does the practice serve?",
         a: "The practice serves Commerce Township and nearby western Oakland County communities from its Novi office, offering individualized, function-focused outpatient rehabilitation when clinically appropriate.",
-      },
-      {
-        q: "Does Excel Rehab accept insurance?",
-        a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
-      },
-      {
-        q: "How can Commerce Township patients request an appointment?",
-        a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
       },
     ],
     siblings: [
