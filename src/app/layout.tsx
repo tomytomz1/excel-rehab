@@ -5,6 +5,7 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingMobileCTA } from "@/components/layout/FloatingMobileCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
 import {
   SITE_NAME,
   SITE_ADDRESS,
@@ -162,6 +163,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <FloatingMobileCTA />
+        <Analytics />
       </body>
     </html>
   );
