@@ -36,7 +36,7 @@ export function FloatingMobileCTA() {
       </a>
       <Link
         href="/contact"
-        className="flex-1 flex items-center justify-center min-h-12 bg-brand-green text-white py-4 text-base font-semibold hover:opacity-90 transition-opacity"
+        className="flex-1 flex items-center justify-center min-h-12 bg-brand-green text-neutral-900 py-4 text-base font-semibold hover:opacity-90 transition-opacity"
       >
         Schedule
       </Link>

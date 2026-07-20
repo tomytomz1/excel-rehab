@@ -112,7 +112,7 @@ export function Hero() {
             <a
               href={`tel:${PHONE.replace(/\./g, "")}`}
               className={cn(
-                "inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-white",
+                "inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-neutral-900",
                 "hover:opacity-90 transition-opacity",
                 FOCUS_RING
               )}

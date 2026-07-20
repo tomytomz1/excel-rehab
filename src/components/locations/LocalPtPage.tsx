@@ -22,7 +22,7 @@ import {
 import { type Location } from "@/lib/data/locations";
 
 const primaryCta =
-  "inline-flex items-center justify-center rounded-lg bg-brand-green px-8 py-3.5 text-white font-semibold hover:opacity-90 transition-opacity";
+  "inline-flex items-center justify-center rounded-lg bg-brand-green px-8 py-3.5 text-neutral-900 font-semibold hover:opacity-90 transition-opacity";
 const outlineCta =
   "inline-flex items-center justify-center rounded-lg border-2 border-brand-blue px-8 py-3.5 text-brand-blue font-semibold hover:bg-brand-blue/10 transition-colors";
 

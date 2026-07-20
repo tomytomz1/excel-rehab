@@ -27,7 +27,7 @@ export function Testimonials() {
               rel="noopener noreferrer"
               className={cn(
                 "inline-flex items-center justify-center w-full sm:w-auto rounded-lg bg-brand-green px-6 py-3",
-                "text-white font-semibold hover:opacity-90 transition-opacity",
+                "text-neutral-900 font-semibold hover:opacity-90 transition-opacity",
                 "outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
               )}
             >

@@ -41,7 +41,7 @@ export default function NotFound() {
             href="/"
             className={cn(
               "inline-flex items-center justify-center rounded-lg bg-brand-green px-8 py-3.5",
-              "text-white font-semibold hover:opacity-90 transition-opacity w-full sm:w-auto",
+              "text-neutral-900 font-semibold hover:opacity-90 transition-opacity w-full sm:w-auto",
               "outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2"
             )}
           >

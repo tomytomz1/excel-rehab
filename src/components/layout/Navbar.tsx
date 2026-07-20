@@ -141,7 +141,7 @@ export function Navbar() {
             <Link
               href="/contact"
               className={cn(
-                "inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-white hover:opacity-90 transition-opacity",
+                "inline-flex items-center justify-center min-h-12 rounded-lg bg-brand-green px-6 py-3 text-base font-semibold text-neutral-900 hover:opacity-90 transition-opacity",
                 FOCUS_RING
               )}
             >
@@ -226,7 +226,7 @@ export function Navbar() {
                 <a
                   href={`tel:${PHONE.replace(/\./g, "")}`}
                   className={cn(
-                    "flex items-center justify-center w-full min-h-12 rounded-lg bg-brand-green py-3 text-base font-semibold text-white hover:opacity-90",
+                    "flex items-center justify-center w-full min-h-12 rounded-lg bg-brand-green py-3 text-base font-semibold text-neutral-900 hover:opacity-90",
                     FOCUS_RING
                   )}
                 >

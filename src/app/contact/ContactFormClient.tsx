@@ -353,7 +353,7 @@ export function ContactFormClient() {
       <Button
         type="submit"
         disabled={isSubmitting || (!!TURNSTILE_SITE_KEY && !captchaToken)}
-        className="w-full bg-brand-green hover:bg-brand-green/90"
+        className="w-full bg-brand-green text-neutral-900 hover:bg-brand-green/90"
       >
         {isSubmitting ? "Sending..." : "Send Message"}
       </Button>
