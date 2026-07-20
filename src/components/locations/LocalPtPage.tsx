@@ -16,7 +16,8 @@ import { DOCTOR } from "@/lib/data/doctor";
 import { ACCEPTED_INSURANCE } from "@/lib/data/insurance";
 import {
   CONDITION_CATEGORIES,
-  getConditionsByCategory,
+  getConditionBySlug,
+  type Condition,
 } from "@/lib/data/conditions";
 import { type Location } from "@/lib/data/locations";
 
@@ -57,6 +58,9 @@ export function LocalPtPage({ location }: { location: Location }) {
     conditionsIntro,
     conditionsEmphasis,
     accessParagraph,
+    visitPlanningParagraph,
+    conditionSlugs,
+    localAffiliationNote,
     whyChooseIntro,
     whyChooseServingBody,
     faqs,
@@ -65,6 +69,10 @@ export function LocalPtPage({ location }: { location: Location }) {
 
   const phoneTel = PHONE.replace(/\./g, "");
   const pageUrl = absoluteUrl(`/${slug}`);
+
+  const selectedConditions = conditionSlugs
+    .map((conditionSlug) => getConditionBySlug(conditionSlug))
+    .filter((condition): condition is Condition => condition !== undefined);
 
   const whyChoose = [
     {
@@ -121,17 +129,6 @@ export function LocalPtPage({ location }: { location: Location }) {
         url: pageUrl,
         provider: { "@id": BUSINESS_SCHEMA_ID },
         areaServed,
-      },
-      {
-        "@type": "FAQPage",
-        mainEntity: faqs.map(({ q, a }) => ({
-          "@type": "Question",
-          name: q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: a,
-          },
-        })),
       },
     ],
   };
@@ -207,10 +204,16 @@ export function LocalPtPage({ location }: { location: Location }) {
             </p>
             <p className="text-lg text-neutral-700 leading-relaxed mb-6">
               The practice is led by{" "}
-              <span className="font-semibold text-neutral-900">
+              <Link
+                href="/about"
+                className="font-semibold text-neutral-900 hover:text-brand-blue hover:underline"
+              >
                 {DOCTOR.name}, {DOCTOR.degrees.join(", ")}
-              </span>
-              .
+              </Link>
+              , {DOCTOR.title.charAt(0).toLowerCase() + DOCTOR.title.slice(1)}.
+            </p>
+            <p className="text-base font-semibold text-neutral-900 mb-3">
+              Board certifications
             </p>
             <ul className="space-y-3 mb-6">
               {DOCTOR.certifications.map((cert) => (
@@ -226,6 +229,25 @@ export function LocalPtPage({ location }: { location: Location }) {
                 </li>
               ))}
             </ul>
+            <p className="text-base text-neutral-700 leading-relaxed mb-3">
+              <span className="font-semibold text-neutral-900">
+                Training and education:
+              </span>{" "}
+              {DOCTOR.training.map((t) => t.name).join(", ")}.
+            </p>
+            <p className="text-base text-neutral-700 leading-relaxed mb-3">
+              <span className="font-semibold text-neutral-900">
+                Hospital affiliations:
+              </span>{" "}
+              {DOCTOR.affiliations.join(", ")}.
+            </p>
+            {localAffiliationNote ? (
+              <p className="text-base text-neutral-700 leading-relaxed mb-6">
+                {localAffiliationNote}
+              </p>
+            ) : (
+              <div className="mb-6" />
+            )}
             <Link
               href="/about"
               className="text-brand-blue font-semibold hover:underline"
@@ -274,7 +296,10 @@ export function LocalPtPage({ location }: { location: Location }) {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             {CONDITION_CATEGORIES.map((category) => {
-              const conditions = getConditionsByCategory(category);
+              const conditions = selectedConditions.filter(
+                (condition) => condition.category === category
+              );
+              if (conditions.length === 0) return null;
               return (
                 <article
                   key={category}
@@ -302,7 +327,8 @@ export function LocalPtPage({ location }: { location: Location }) {
             })}
           </div>
           <p className="mt-10 text-lg text-neutral-700 leading-relaxed">
-            Explore the full list of{" "}
+            These are among the conditions commonly seen for {city}-area
+            patients. See the full list of{" "}
             <Link
               href="/conditions"
               className="text-brand-blue font-semibold hover:underline"
@@ -369,6 +395,32 @@ export function LocalPtPage({ location }: { location: Location }) {
               </span>{" "}
               {accessParagraph}
             </p>
+            <div className="mt-6 rounded-xl bg-white border border-neutral-200/80 shadow-sm p-6 lg:p-8">
+              <h3 className="text-xl font-semibold text-neutral-900 leading-tight mb-3">
+                Planning Your Visit from {city}
+              </h3>
+              <p className="text-base text-neutral-700 leading-relaxed mb-4">
+                {visitPlanningParagraph}
+              </p>
+              <ul className="space-y-3">
+                {[
+                  "A first physiatric visit generally involves a review of your history and a physical assessment to help determine an appropriate plan of care.",
+                  "A referral or prior authorization may be required depending on your plan — verify with your insurer before scheduling.",
+                  `On-site parking is available at the Novi office; call ${PHONE} for directions or scheduling questions.`,
+                ].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-start gap-3 text-base text-neutral-800 leading-relaxed"
+                  >
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green"
+                      aria-hidden
+                    />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p className="text-lg text-neutral-700 leading-relaxed mt-6">
               Patients also visit our{" "}
               <Link
@@ -431,7 +483,7 @@ export function LocalPtPage({ location }: { location: Location }) {
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-8">
-            Visit Excel Rehab in Novi
+            Visit Excel PM&amp;R in Novi
           </h2>
           <div className="grid lg:grid-cols-2 gap-10">
             <div className="rounded-xl bg-white border border-neutral-200/80 shadow-sm p-6 lg:p-8">

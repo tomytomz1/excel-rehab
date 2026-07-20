@@ -43,7 +43,7 @@ export function InnerPageHero({
     >
       <Image
         src="/images/hero-medical-bg.jpg"
-        alt="Page header background"
+        alt=""
         fill
         className="object-cover"
         sizes="100vw"

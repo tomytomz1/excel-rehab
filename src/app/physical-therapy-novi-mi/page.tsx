@@ -31,7 +31,7 @@ export const metadata = pageMetadata({
 
 const FAQS = [
   {
-    q: "Does Excel Rehab offer physical therapy at its Novi office?",
+    q: "Does Excel PM&R offer physical therapy at its Novi office?",
     a: "Yes. Excel Physical Medicine and Rehab lists on-site physical therapy among the services available at its Novi location.",
   },
   {
@@ -39,8 +39,8 @@ const FAQS = [
     a: "Excel PM&R evaluates a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be included in an individualized plan when clinically appropriate.",
   },
   {
-    q: "Does Excel Rehab accept insurance?",
-    a: "Excel Rehab lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
+    q: "Does Excel PM&R accept insurance?",
+    a: "Excel PM&R lists auto, workers compensation, Medicare, Blue Cross, HAP, United, Priority, and other commercial insurance payor sources. Patients should contact the office to verify current coverage and authorization requirements.",
   },
   {
     q: "Where is Excel Physical Medicine and Rehab located?",
@@ -127,17 +127,6 @@ export default function PhysicalTherapyNoviPage() {
         provider: { "@id": BUSINESS_SCHEMA_ID },
         areaServed: "Novi, Michigan",
       },
-      {
-        "@type": "FAQPage",
-        mainEntity: FAQS.map(({ q, a }) => ({
-          "@type": "Question",
-          name: q,
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: a,
-          },
-        })),
-      },
     ],
   };
 
@@ -193,7 +182,7 @@ export default function PhysicalTherapyNoviPage() {
               </div>
             </div>
             <div>
-              {/* TODO: Replace this representative image with an approved original photo of the Excel Rehab physical therapy facility when available. */}
+              {/* TODO: Replace this representative image with an approved original photo of the Excel PM&R physical therapy facility when available. */}
               <div className="relative aspect-[3/2] w-full overflow-hidden rounded-xl border border-neutral-200/80 shadow-sm">
                 <Image
                   src="/images/knee-therapy.jpg"
@@ -399,7 +388,7 @@ export default function PhysicalTherapyNoviPage() {
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-8">
-            Visit Excel Rehab in Novi
+            Visit Excel PM&amp;R in Novi
           </h2>
           <div className="grid lg:grid-cols-2 gap-10">
             <div className="rounded-xl bg-white border border-neutral-200/80 shadow-sm p-6 lg:p-8">
