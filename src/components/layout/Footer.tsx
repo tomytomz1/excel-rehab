@@ -129,7 +129,7 @@ export function Footer() {
       <div
         className={cn(
           "border-t border-neutral-800 py-6 px-4 sm:px-6 lg:px-8",
-          "flex flex-col items-center justify-center gap-3 text-base text-neutral-500 text-center"
+          "flex flex-col items-center justify-center gap-3 text-base text-neutral-400 text-center"
         )}
       >
         <p className="text-sm text-neutral-400 max-w-2xl leading-relaxed">
