@@ -1,40 +1,12 @@
-"use client";
-
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
 import { TAGLINES, PHONE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const FOCUS_RING =
   "outline-none focus-visible:ring-2 focus-visible:ring-brand-blue focus-visible:ring-offset-2 focus-visible:ring-offset-neutral-900";
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: () => ({
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-      delayChildren: 0,
-    },
-  }),
-};
-
-const item = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.8, ease: "easeOut" as const },
-  },
-};
-
-const visibleState = { opacity: 1, y: 0 };
-
 export function Hero() {
-  const prefersReducedMotion = useReducedMotion();
-  const noAnimation = prefersReducedMotion === true;
-
   return (
     <section
       className={cn(
@@ -49,6 +21,7 @@ export function Hero() {
         fill
         className="object-cover"
         priority
+        fetchPriority="high"
         sizes="100vw"
       />
       <div
@@ -56,58 +29,37 @@ export function Hero() {
         aria-hidden
       />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full py-20">
-        <motion.div
-          className={cn(
-            "max-w-2xl",
-            "text-left md:text-left",
-            "flex flex-col items-start"
-          )}
-          variants={noAnimation ? undefined : container}
-          initial={noAnimation ? visibleState : "hidden"}
-          animate={noAnimation ? visibleState : "visible"}
-        >
-          <motion.div
-            variants={noAnimation ? undefined : item}
-            initial={noAnimation ? visibleState : undefined}
-            animate={noAnimation ? visibleState : undefined}
-            className="text-white text-lg sm:text-xl font-semibold tracking-[0.12em] uppercase mb-5 space-y-2"
+        <div className="max-w-2xl text-left flex flex-col items-start">
+          <div
+            className="hero-rise text-white text-lg sm:text-xl font-semibold tracking-[0.12em] uppercase mb-5 space-y-2"
+            style={{ animationDelay: "0ms" }}
           >
             <p>PATIENT CENTERED</p>
             <p>FUNCTION FOCUSED</p>
             <p>INTERDISCIPLINARY CARE</p>
-          </motion.div>
-          <motion.h1
-            variants={noAnimation ? undefined : item}
-            initial={noAnimation ? visibleState : undefined}
-            animate={noAnimation ? visibleState : undefined}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 uppercase"
+          </div>
+          <h1
+            className="hero-rise text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 uppercase"
+            style={{ animationDelay: "120ms" }}
           >
             {TAGLINES.hero}
-          </motion.h1>
-          <motion.p
-            variants={noAnimation ? undefined : item}
-            initial={noAnimation ? visibleState : undefined}
-            animate={noAnimation ? visibleState : undefined}
-            className="text-white/90 text-sm sm:text-base font-medium tracking-[0.18em] uppercase mb-5"
+          </h1>
+          <p
+            className="hero-rise text-white/90 text-sm sm:text-base font-medium tracking-[0.18em] uppercase mb-5"
+            style={{ animationDelay: "240ms" }}
           >
             Located in Novi, Michigan
-          </motion.p>
-          <motion.p
-            variants={noAnimation ? undefined : item}
-            initial={noAnimation ? visibleState : undefined}
-            animate={noAnimation ? visibleState : undefined}
-            className="text-white/90 text-base sm:text-lg font-normal max-w-xl mb-8"
+          </p>
+          <p
+            className="hero-rise text-white/90 text-base sm:text-lg font-normal max-w-xl mb-8"
+            style={{ animationDelay: "360ms" }}
           >
             Focused on the prevention, diagnosis, and non-operative management
             for patients with disorders associated with disability.
-          </motion.p>
-          <motion.div
-            variants={noAnimation ? undefined : item}
-            initial={noAnimation ? visibleState : undefined}
-            animate={noAnimation ? visibleState : undefined}
-            className={cn(
-              "flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
-            )}
+          </p>
+          <div
+            className="hero-rise flex flex-col sm:flex-row gap-4 w-full sm:w-auto"
+            style={{ animationDelay: "480ms" }}
           >
             <a
               href={`tel:${PHONE.replace(/\./g, "")}`}
@@ -129,8 +81,8 @@ export function Hero() {
             >
               EXPLORE SERVICES
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );
