@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { TAGLINES, PHONE } from "@/lib/constants";
+import { TAGLINES, PHONE, SCHEDULING_URL } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 
 const FOCUS_RING =
@@ -87,6 +87,23 @@ export function Hero() {
               EXPLORE SERVICES
             </Link>
           </div>
+          <p
+            className="hero-rise mt-5 text-base text-white/90"
+            style={{ animationDelay: "560ms" }}
+          >
+            Prefer to book online?{" "}
+            <a
+              href={SCHEDULING_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={cn(
+                "font-semibold underline underline-offset-4 hover:no-underline",
+                FOCUS_RING
+              )}
+            >
+              Open our scheduling calendar
+            </a>
+          </p>
         </div>
       </div>
     </section>
