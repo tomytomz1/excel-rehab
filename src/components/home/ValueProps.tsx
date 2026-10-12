@@ -7,27 +7,34 @@ import { useRef } from "react";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { cn } from "@/lib/utils";
 
-const BROCHURE_COPY =
-  "At Excel PM&R, our goal is to decrease our patients' pain, maximize function, and improve quality of life.";
+// Each card explains a different aspect of the documented Novi PM&R practice.
+const CARE_DESCRIPTIONS = {
+  assessment:
+    "A physiatric assessment considers movement, function, and rehabilitation goals to help guide an individualized approach to care.",
+  treatment:
+    "Treatment may include on-site physical therapy or non-operative pain management, based on each patient's needs and clinical assessment.",
+  recovery:
+    "Rehabilitation is focused on mobility, function, independence, and quality of life.",
+} as const;
 
 const CARDS = [
   {
     image: "/images/shoulder-exam.jpg",
     alt: "Doctor examining patient's shoulder",
     title: "Comprehensive Assessment",
-    description: BROCHURE_COPY,
+    description: CARE_DESCRIPTIONS.assessment,
   },
   {
     image: "/images/caregiver-patient.jpg",
     alt: "Caregiver with patient",
     title: "Patient-Centered Treatment",
-    description: BROCHURE_COPY,
+    description: CARE_DESCRIPTIONS.treatment,
   },
   {
     image: "/images/knee-therapy.jpg",
     alt: "Knee therapy and rehabilitation",
     title: "Functional Recovery",
-    description: BROCHURE_COPY,
+    description: CARE_DESCRIPTIONS.recovery,
   },
 ] as const;
 
