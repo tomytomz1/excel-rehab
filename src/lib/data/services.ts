@@ -20,46 +20,55 @@ export const SERVICES: Service[] = [
   {
     name: "Peripheral Joint Injections",
     slug: "peripheral-joint-injections",
+    href: "/services/peripheral-joint-injections",
     icon: "Syringe",
   },
   {
     name: "Trigger Point Injections",
     slug: "trigger-point-injections",
+    href: "/services/trigger-point-injections",
     icon: "Target",
   },
   {
     name: "Epidural Steroid Injections",
     slug: "epidural-steroid-injections",
+    href: "/services/epidural-steroid-injections",
     icon: "Pill",
   },
   {
     name: "Facet Joint Injections",
     slug: "facet-joint-injections",
+    href: "/services/facet-joint-injections",
     icon: "CircleDot",
   },
   {
     name: "Platelet Rich Plasma Injections",
     slug: "platelet-rich-plasma-injections",
+    href: "/services/platelet-rich-plasma-injections",
     icon: "Droplets",
   },
   {
     name: "Sacroiliac Joint Injections",
     slug: "sacroiliac-joint-injections",
+    href: "/services/sacroiliac-joint-injections",
     icon: "Syringe",
   },
   {
     name: "Ultrasound-Guided Injections",
     slug: "ultrasound-guided-injections",
+    href: "/services/ultrasound-guided-injections",
     icon: "ScanSearch",
   },
   {
     name: "Therapeutic Botox",
     slug: "therapeutic-botox",
+    href: "/services/therapeutic-botox",
     icon: "Sparkles",
   },
   {
     name: "Regenerative Medicine",
     slug: "regenerative-medicine",
+    href: "/services/regenerative-medicine",
     icon: "HeartPulse",
   },
   {

@@ -52,7 +52,8 @@ export const SERVICE_TO_CONDITIONS: Record<string, string[]> = {
   ],
   "therapeutic-botox": [
     "spasticity",
-    "cervical-lumbar-radiculopathy",
+    "traumatic-brain-injuries",
+    "spinal-cord-injuries",
   ],
   "regenerative-medicine": [
     "joint-arthritis",
@@ -80,7 +81,6 @@ export const CONDITION_TO_SERVICES: Record<string, string[]> = {
   ],
   "cervical-lumbar-radiculopathy": [
     "epidural-steroid-injections",
-    "therapeutic-botox",
     "on-site-physical-therapy",
   ],
   "neck-lumbar-degenerative-joint-disease": [
