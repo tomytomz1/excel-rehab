@@ -176,7 +176,13 @@ export function ContactFormClient() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+    <form method="post" onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
+      <noscript>
+        <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-base text-neutral-900">
+          Online scheduling inquiries require JavaScript. Please call 248.624.5176
+          instead. Do not submit patient details using an unsupported browser.
+        </p>
+      </noscript>
       <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
         <label htmlFor="website">Website</label>
         <input id="website" type="text" tabIndex={-1} autoComplete="off" {...register("website")} />
