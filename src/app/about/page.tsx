@@ -36,7 +36,7 @@ export default function AboutPage() {
   return (
     <div>
       <InnerPageHero
-        title={`About ${SITE_NAME}`}
+        title="About Dr. Evangelista, Physiatrist in Novi, MI"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "About" },
