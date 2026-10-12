@@ -8,13 +8,12 @@ import { ConditionsCloud } from "@/components/home/ConditionsCloud";
 import { InsuranceStrip } from "@/components/home/InsuranceStrip";
 import { Testimonials } from "@/components/home/Testimonials";
 import { CTABanner } from "@/components/home/CTABanner";
-import { SITE_NAME } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
   path: "/",
-  title: `${SITE_NAME} | PM&R Clinic in Novi, MI`,
+  title: "Physiatrist & Pain Management in Novi, MI | Excel PM&R",
   description:
     "Board certified physiatrist in Novi, Michigan. Non-operative pain management, physical therapy, injections, and rehabilitation. Call 248.624.5176.",
 });

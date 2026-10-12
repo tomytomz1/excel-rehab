@@ -35,11 +35,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/conditions/:slug",
-        destination: "/conditions",
-        permanent: true,
-      },
-      {
         source: "/favicon.ico",
         destination: "/icon.png",
         permanent: false,

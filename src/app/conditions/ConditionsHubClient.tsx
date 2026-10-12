@@ -16,6 +16,7 @@ import {
   getConditionsByCategory,
   type ConditionCategory,
 } from "@/lib/data/conditions";
+import { CONDITION_CONTENT } from "@/lib/data/condition-content";
 import { cn } from "@/lib/utils";
 
 const CATEGORY_ICONS: Record<ConditionCategory, LucideIcon> = {
@@ -74,7 +75,16 @@ function CategoryCard({
               className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green"
               aria-hidden
             />
-            <span>{condition.name}</span>
+            {CONDITION_CONTENT[condition.slug] ? (
+              <Link
+                href={`/conditions/${condition.slug}`}
+                className="text-brand-blue font-semibold hover:underline"
+              >
+                {condition.name}
+              </Link>
+            ) : (
+              <span>{condition.name}</span>
+            )}
           </li>
         ))}
       </ul>

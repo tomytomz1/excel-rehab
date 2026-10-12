@@ -15,6 +15,8 @@ const QUICK_LINKS = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Services", href: "/services" },
+  { label: "Pain Management", href: "/pain-management-novi-mi" },
+  { label: "Auto & Work Injuries", href: "/auto-accident-work-injury-novi-mi" },
   { label: "Conditions", href: "/conditions" },
   { label: "Accepted Insurances", href: "/patient-resources" },
   { label: "Contact", href: "/contact" },

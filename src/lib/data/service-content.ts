@@ -1,9 +1,9 @@
 /**
  * Patient-education copy for individual service pages (/services/[slug]).
  *
- * STATUS: DRAFT — PENDING PHYSICIAN REVIEW.
- * This copy is general patient education about each procedure. It must be
- * reviewed and approved by Dr. Evangelista before this branch is merged.
+ * STATUS: PUBLISHED without physician sign-off (site owner's decision);
+ * Dr. Evangelista should still review it. This copy is general patient
+ * education about each procedure.
  * Rules followed while drafting:
  *   - Describe the procedure in general terms only; no claims about the
  *     clinic's specific equipment, techniques, volumes, or outcomes.
@@ -34,7 +34,7 @@ export interface ServiceContent {
   faqs: readonly ServiceFaq[];
 }
 
-const EVAL_FAQ: ServiceFaq = {
+export const EVAL_FAQ: ServiceFaq = {
   q: "How do I know if this treatment is right for me?",
   a: "Every treatment plan at Excel Physical Medicine and Rehab starts with a comprehensive physiatric assessment. Dr. Evangelista reviews your history, examines how the problem affects your function, and discusses whether this option makes sense alongside alternatives such as physical therapy.",
 };
