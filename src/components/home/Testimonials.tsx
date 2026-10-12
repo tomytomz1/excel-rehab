@@ -37,7 +37,7 @@ export function Testimonials() {
           <div className="flex flex-col items-stretch justify-center text-center w-full min-w-0">
             <div className="relative w-36 h-36 sm:w-40 sm:h-40 rounded-lg overflow-hidden bg-white border border-neutral-200 shadow-sm shrink-0 mx-auto">
               <Image
-                src="/qr/Google%20Review%20QR%20Code.png"
+                src="/qr/google-review-official.svg"
                 alt="QR code to leave a Google Review for Excel Physical Medicine and Rehab"
                 fill
                 className="object-contain p-2"
