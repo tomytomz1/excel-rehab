@@ -3,9 +3,11 @@
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { DOCTOR } from "@/lib/data/doctor";
 
+// Two board certifications independently corroborated by Corewell Health.
 const trustText = [
-  ...DOCTOR.certifications,
-  "Affiliated with 4 Major Hospitals",
+  DOCTOR.certifications[0],
+  DOCTOR.certifications[1],
+  "Physician-led care in Novi, MI",
 ].join(" | ");
 
 export function TrustBar() {

@@ -65,6 +65,7 @@ export function LocalPtPage({ location }: { location: Location }) {
     whyChooseIntro,
     whyChooseServingBody,
     faqs,
+    carePathways,
     siblings,
   } = location;
 
@@ -327,6 +328,28 @@ export function LocalPtPage({ location }: { location: Location }) {
               );
             })}
           </div>
+          {carePathways && carePathways.length > 0 && (
+            <div className="mt-10 rounded-xl bg-white border border-neutral-200/80 p-6 lg:p-8">
+              <h3 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight mb-3">
+                Explore Related Care at Our Novi Office
+              </h3>
+              <p className="text-base text-neutral-700 mb-5">
+                These resources describe care provided in Novi, not at a separate {city} location.
+              </p>
+              <ul className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                {carePathways.map((path) => (
+                  <li key={path.href}>
+                    <Link href={path.href} className="text-brand-blue font-semibold hover:underline">
+                      {path.label}
+                    </Link>
+                    <p className="text-base text-neutral-700 leading-relaxed mt-1">
+                      {path.description}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
           <p className="mt-10 text-lg text-neutral-700 leading-relaxed">
             These are among the conditions commonly seen for {city}-area
             patients. See the full list of{" "}

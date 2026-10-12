@@ -155,16 +155,29 @@ export default function AboutPage() {
                 </div>
               ))}
             </dl>
-            <p className="mt-6 text-sm text-neutral-600 leading-relaxed">
-              Education details are listed in{" "}
-              <a
-                href="https://providers.corewellhealth.org/provider/augustus-p-evangelista/3191872"
-                className="text-brand-blue font-semibold hover:underline"
-              >
-                Corewell Health&apos;s physician directory
-              </a>
-              .
-            </p>
+            <div className="mt-6 text-sm text-neutral-600 leading-relaxed">
+              <p className="font-semibold text-neutral-900 mb-2">
+                Independent physician directories
+              </p>
+              <p className="mb-2">
+                Physician training, board certifications and the Novi practice address
+                can also be checked with these healthcare systems:
+              </p>
+              <ul className="flex flex-wrap gap-x-5 gap-y-2">
+                {DOCTOR.publicDirectoryProfiles.map((profile) => (
+                  <li key={profile.url}>
+                    <a
+                      href={profile.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-brand-blue font-semibold hover:underline"
+                    >
+                      {profile.label} physician profile
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <p className="mt-6 text-neutral-700 leading-relaxed">
               Learn about{" "}
               <Link href="/pain-management-novi-mi" className="text-brand-blue font-semibold hover:underline">

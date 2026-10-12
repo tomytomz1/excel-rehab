@@ -91,6 +91,8 @@ function buildJsonLdSchema() {
     name: DOCTOR.name,
     jobTitle: "Physiatrist (Physical Medicine & Rehabilitation)",
     url: absoluteUrl("/about"),
+    // Independently corroborated clinician identities, not additional practice locations.
+    sameAs: DOCTOR.publicDirectoryProfiles.map((profile) => profile.url),
     worksFor: { "@id": BUSINESS_SCHEMA_ID },
     hasCredential: DOCTOR.certifications.map((cert) => ({
       "@type": "EducationalOccupationalCredential",
