@@ -38,18 +38,23 @@ export function Hero() {
             <p>FUNCTION FOCUSED</p>
             <p>INTERDISCIPLINARY CARE</p>
           </div>
-          <h1
-            className="hero-rise text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 uppercase"
-            style={{ animationDelay: "120ms" }}
-          >
-            {TAGLINES.hero}
+          {/* One H1 that carries both the brand tagline and the primary
+              keyword/location ("physical medicine & rehabilitation, Novi").
+              The second line keeps the original small-caps styling. */}
+          <h1 className="mb-5">
+            <span
+              className="hero-rise block text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mb-4 uppercase"
+              style={{ animationDelay: "120ms" }}
+            >
+              {TAGLINES.hero}
+            </span>
+            <span
+              className="hero-rise block text-white/90 text-sm sm:text-base font-medium tracking-[0.18em] uppercase"
+              style={{ animationDelay: "240ms" }}
+            >
+              Physical Medicine &amp; Rehabilitation in Novi, Michigan
+            </span>
           </h1>
-          <p
-            className="hero-rise text-white/90 text-sm sm:text-base font-medium tracking-[0.18em] uppercase mb-5"
-            style={{ animationDelay: "240ms" }}
-          >
-            Located in Novi, Michigan
-          </p>
           <p
             className="hero-rise text-white/90 text-base sm:text-lg font-normal max-w-xl mb-8"
             style={{ animationDelay: "360ms" }}
