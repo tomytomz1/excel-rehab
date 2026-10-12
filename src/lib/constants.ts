@@ -35,8 +35,8 @@ export const SCHEDULING_URL = "https://calendly.com/excelphysicalmedicine";
 /** Stable schema.org node id for the business (LocalBusiness/MedicalBusiness). */
 export const BUSINESS_SCHEMA_ID = `${WEBSITE_URL}/#business`;
 
-/** Google Business Profile review link (from clinic QR code) */
-export const GOOGLE_REVIEW_URL = "https://g.page/r/CfS47j8ganVaEBM/review";
+/** Google Business Profile review link verified against official October 2026 GBP QR */
+export const GOOGLE_REVIEW_URL = "https://g.page/r/CfS47j8ganVaEAE/review";
 
 /** Office hours (verified). Used for display and openingHoursSpecification schema. */
 export const BUSINESS_HOURS = {
