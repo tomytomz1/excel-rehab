@@ -12,6 +12,18 @@ export const DOCTOR = {
     "Licensed Nursing Home Administrator",
   ] as const,
   title: "Medical Director of Excel Physical Medicine and Rehab",
+  // Independent healthcare system directories that identify this physician at 31190 Novi Rd.
+  // Not a substitute for clinic verification of current hospital affiliations.
+  publicDirectoryProfiles: [
+    {
+      label: "Corewell Health",
+      url: "https://providers.corewellhealth.org/provider/augustus-p-evangelista/3191872",
+    },
+    {
+      label: "Trinity Health Michigan",
+      url: "https://www.trinityhealthmichigan.com/provider/augustus-evangelista-md-physical-medicine-and-rehabilitation",
+    },
+  ] as const,
   affiliations: [
     "Ascension Providence Hospital",
     "Beaumont Farmington Hills",
