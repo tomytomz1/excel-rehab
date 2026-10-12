@@ -23,8 +23,17 @@ const CONDITIONS = [
   "sports-injuries",
 ] as const;
 
-/** Every service that has its own page (physical therapy and the procedures). */
-const TREATMENTS = SERVICES.flatMap((s) => (s.href ? [{ label: s.name, href: s.href }] : []));
+/** Keep the most relevant paths visible; the full catalog remains linked below. */
+const FOCUS_SERVICE_SLUGS = new Set([
+  "on-site-physical-therapy",
+  "epidural-steroid-injections",
+  "trigger-point-injections",
+  "facet-joint-injections",
+  "sacroiliac-joint-injections",
+]);
+const TREATMENTS = SERVICES.filter((s) => FOCUS_SERVICE_SLUGS.has(s.slug)).flatMap(
+  (s) => (s.href ? [{ label: s.name, href: s.href }] : [])
+);
 
 export default function PainManagementPage() {
   return (
@@ -33,6 +42,7 @@ export default function PainManagementPage() {
       jsonLd={topicPageJsonLd(PATH, "Pain Management", PAIN_MANAGEMENT)}
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Pain Management" }]}
       aboutHeading="Physician-led, non-operative pain care"
+      showEarlyConsultationCta
       benefitHeading="Conditions commonly evaluated"
       expectHeading="How it works"
       chips={{ label: "Conditions", items: conditionLinks(CONDITIONS) }}
