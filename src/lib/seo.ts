@@ -16,6 +16,14 @@ type PageMetaInput = {
   imageAlt?: string;
 };
 
+/** 1200×630 social share image used when a page doesn't set its own. */
+export const DEFAULT_OG_IMAGE = {
+  url: "/images/og-default.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Exterior of the Excel PM&R building in Novi, Michigan",
+} as const;
+
 /** Per-page metadata with a unique canonical URL (required for correct Google indexing). */
 export function pageMetadata({
   path,
@@ -25,6 +33,10 @@ export function pageMetadata({
   imageAlt,
 }: PageMetaInput): Metadata {
   const url = absoluteUrl(path);
+  // A page-level openGraph replaces the layout's, so always set an image here.
+  const ogImage = image
+    ? { url: absoluteUrl(image), alt: imageAlt }
+    : { ...DEFAULT_OG_IMAGE, url: absoluteUrl(DEFAULT_OG_IMAGE.url) };
   return {
     title: { absolute: title },
     description,
@@ -34,20 +46,14 @@ export function pageMetadata({
       description,
       url,
       type: "website",
-      ...(image
-        ? { images: [{ url: absoluteUrl(image), alt: imageAlt }] }
-        : {}),
+      images: [ogImage],
     },
-    ...(image
-      ? {
-          twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [absoluteUrl(image)],
-          },
-        }
-      : {}),
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [ogImage.url],
+    },
     robots: { index: true, follow: true },
   };
 }
