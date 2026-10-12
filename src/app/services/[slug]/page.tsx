@@ -10,6 +10,22 @@ import { absoluteUrl, pageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
 
+/** Relevant next-step links for the two priority procedures.
+ * Other service pages retain their existing related-services list.
+ */
+const PRIORITY_RELATED: Record<string, string[]> = {
+  "trigger-point-injections": [
+    "on-site-physical-therapy",
+    "epidural-steroid-injections",
+    "facet-joint-injections",
+  ],
+  "epidural-steroid-injections": [
+    "on-site-physical-therapy",
+    "trigger-point-injections",
+    "facet-joint-injections",
+  ],
+};
+
 export function generateStaticParams() {
   return Object.keys(SERVICE_CONTENT).map((slug) => ({ slug }));
 }
@@ -34,9 +50,15 @@ export default async function ServicePage({ params }: Props) {
 
   const pageUrl = absoluteUrl(`/services/${slug}`);
 
-  const related = SERVICES.filter((s) => s.slug !== slug && SERVICE_CONTENT[s.slug])
-    .slice(0, 4)
-    .map((s) => ({ label: s.name, href: `/services/${s.slug}` }));
+  const relatedSlugs = PRIORITY_RELATED[slug];
+  const related = relatedSlugs
+    ? relatedSlugs.flatMap((relatedSlug) => {
+        const item = getServiceBySlug(relatedSlug);
+        return item?.href ? [{ label: item.name, href: item.href }] : [];
+      })
+    : SERVICES.filter((s) => s.slug !== slug && SERVICE_CONTENT[s.slug])
+        .slice(0, 4)
+        .map((s) => ({ label: s.name, href: `/services/${s.slug}` }));
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -71,6 +93,7 @@ export default async function ServicePage({ params }: Props) {
         { label: service.name },
       ]}
       aboutHeading={`About ${service.name}`}
+      showEarlyConsultationCta={slug === "trigger-point-injections" || slug === "epidural-steroid-injections"}
       chips={{
         label: "Related conditions",
         items: conditionLinks(SERVICE_TO_CONDITIONS[slug] ?? []),
