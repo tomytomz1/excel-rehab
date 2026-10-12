@@ -1,5 +1,6 @@
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { ConditionsHubClient } from "./ConditionsHubClient";
+import { CONDITION_CONTENT } from "@/lib/data/condition-content";
 import { SITE_NAME } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 
@@ -18,7 +19,7 @@ export default function ConditionsPage() {
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Conditions" }]}
         variant="brand-blue"
       />
-      <ConditionsHubClient />
+      <ConditionsHubClient pageSlugs={Object.keys(CONDITION_CONTENT)} />
     </div>
   );
 }
