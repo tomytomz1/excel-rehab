@@ -14,8 +14,11 @@ import {
   WEBSITE_URL,
   BUSINESS_SCHEMA_ID,
   BUSINESS_HOURS,
+  SITE_ALTERNATE_NAMES,
 } from "@/lib/constants";
 import { DOCTOR } from "@/lib/data/doctor";
+import { SERVICES } from "@/lib/data/services";
+import { LOCATIONS } from "@/lib/data/locations";
 import { absoluteUrl } from "@/lib/seo";
 
 /** Stable schema.org node id for the lead physician. */
@@ -40,6 +43,9 @@ function buildJsonLdSchema() {
     "@type": "MedicalClinic",
     "@id": BUSINESS_SCHEMA_ID,
     name: SITE_NAME,
+    // Short forms patients search for; helps Google separate this practice
+    // from unrelated "Excel" rehab / PT brands in other states.
+    alternateName: SITE_ALTERNATE_NAMES,
     description: SCHEMA_DESCRIPTION,
     address: {
       "@type": "PostalAddress",
@@ -65,6 +71,16 @@ function buildJsonLdSchema() {
         closes: BUSINESS_HOURS.closes,
       },
     ],
+    areaServed: [
+      { "@type": "City", name: "Novi, Michigan" },
+      ...LOCATIONS.map((l) => ({ "@type": "City", name: l.areaServed })),
+    ],
+    availableService: SERVICES.filter(
+      (s) => s.slug !== "health-wellness-weight-loss"
+    ).map((s) => ({
+      "@type": s.slug === "on-site-physical-therapy" ? "MedicalTherapy" : "MedicalProcedure",
+      name: s.name,
+    })),
     employee: { "@id": PHYSICIAN_SCHEMA_ID },
   };
 
@@ -84,15 +100,26 @@ function buildJsonLdSchema() {
       "@type": "EducationalOrganization",
       name: school.name,
     })),
+    // MedicalOrganization (not Hospital): Hospital is a LocalBusiness subtype,
+    // so Google/Semrush require a full postal address on every instance.
     affiliation: DOCTOR.affiliations.map((hospital) => ({
-      "@type": "Hospital",
+      "@type": "MedicalOrganization",
       name: hospital,
     })),
   };
 
+  const website = {
+    "@type": "WebSite",
+    "@id": `${WEBSITE_URL}/#website`,
+    url: absoluteUrl("/"),
+    name: SITE_NAME,
+    alternateName: SITE_ALTERNATE_NAMES,
+    publisher: { "@id": BUSINESS_SCHEMA_ID },
+  };
+
   return {
     "@context": "https://schema.org",
-    "@graph": [business, physician],
+    "@graph": [business, physician, website],
   };
 }
 

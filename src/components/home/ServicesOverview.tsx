@@ -40,9 +40,19 @@ export function ServicesOverview() {
   return (
     <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 text-center mb-12 leading-tight">
+        <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 text-center mb-4 leading-tight">
           Our Services
         </h2>
+        <p className="text-neutral-600 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
+          Physician-led care under one roof in Novi, Michigan, from{" "}
+          <Link
+            href="/physical-therapy-novi-mi"
+            className="text-brand-blue font-semibold hover:underline"
+          >
+            physical therapy in Novi
+          </Link>{" "}
+          to ultrasound-guided injections and regenerative medicine.
+        </p>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {SERVICES.map((service) => {
             const cardClass = "flex gap-4 p-5 rounded-xl bg-neutral-100/50";

@@ -5,6 +5,13 @@
 
 export const SITE_NAME = "Excel Physical Medicine and Rehab";
 
+/** Alternate brand names used in schema.org markup (brand disambiguation). */
+export const SITE_ALTERNATE_NAMES = [
+  "Excel PM&R",
+  "Excel Physical Medicine & Rehab",
+  "Excel Rehab Novi",
+] as const;
+
 export const SITE_ADDRESS = {
   street: "31190 Novi Road",
   city: "Novi",

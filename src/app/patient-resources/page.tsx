@@ -16,7 +16,7 @@ export default function PatientResourcesPage() {
   return (
     <div>
       <InnerPageHero
-        title="Accepted Insurances"
+        title="Accepted Insurance at Excel PM&R in Novi, MI"
         breadcrumbs={[
           { label: "Home", href: "/" },
           { label: "Accepted Insurances" },
