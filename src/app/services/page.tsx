@@ -48,7 +48,7 @@ export default function ServicesPage() {
   return (
     <div>
       <InnerPageHero
-        title="Our Services"
+        title="Pain Management & Rehabilitation Services in Novi, MI"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Services" }]}
         variant="brand-blue"
       />
