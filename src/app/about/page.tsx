@@ -11,7 +11,8 @@ import { cn } from "@/lib/utils";
 export const metadata = pageMetadata({
   path: "/about",
   title: "Dr. Augustus (Peter) Evangelista, MD | Physiatrist, Novi MI",
-  description: `Meet Dr. Augustus (Peter) Evangelista, board certified in Physical Medicine and Rehabilitation and Pain Medicine. Medical Director of Excel PM&R in Novi, MI. ${TAGLINES.primary}`,
+  description:
+    "Dr. Augustus (Peter) Evangelista is a physiatrist board certified in PM&R and Pain Medicine, and Medical Director of Excel PM&R in Novi, MI.",
 });
 
 const QUOTE =

@@ -19,7 +19,7 @@ import {
 import { DOCTOR } from "@/lib/data/doctor";
 import { SERVICES } from "@/lib/data/services";
 import { LOCATIONS } from "@/lib/data/locations";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 /** Stable schema.org node id for the lead physician. */
 const PHYSICIAN_SCHEMA_ID = `${WEBSITE_URL}/#physician`;
@@ -146,19 +146,13 @@ export const metadata: Metadata = {
     url: absoluteUrl("/"),
     locale: "en_US",
     siteName: SITE_NAME,
-    images: [
-      {
-        url: "/images/logo-color.png",
-        width: 1200,
-        height: 630,
-        alt: SITE_NAME,
-      },
-    ],
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
     title: defaultTitle,
     description: defaultDescription,
+    images: [DEFAULT_OG_IMAGE.url],
   },
   icons: {
     icon: [{ url: "/icon.png", type: "image/png" }],
