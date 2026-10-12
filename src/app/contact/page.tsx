@@ -11,6 +11,9 @@ export const metadata = pageMetadata({
   description: `${SITE_ADDRESS.full}. Phone ${PHONE}, Fax ${FAX}. Schedule an appointment or send a message.`,
 });
 
+// Same destination encoded in the practice's existing scheduling QR image.
+const SCHEDULING_URL = "https://calendly.com/excelphysicalmedicine";
+
 export default function ContactPage() {
   const phoneTel = PHONE.replace(/\./g, "");
 
@@ -110,13 +113,31 @@ export default function ContactPage() {
         </div>
       </SectionWrapper>
 
-      {/* Full-width QR section */}
+      {/* Online scheduling and full-width QR section */}
       <SectionWrapper amount={0} className="py-12 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <p className="text-lg font-semibold text-neutral-900 mb-4">
-            Scan to Schedule Your Appointment
+          <h2 className="text-xl font-semibold text-neutral-900 mb-4">
+            Schedule Your Appointment
+          </h2>
+          <a
+            href={SCHEDULING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open scheduling page on Calendly (opens in a new tab)"
+            className="inline-flex min-h-11 items-center justify-center rounded-lg bg-brand-green px-6 py-3 font-semibold text-neutral-900 hover:bg-brand-green/90 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+          >
+            Open scheduling page
+          </a>
+          <p className="mt-3 mb-6 text-neutral-600">
+            Opens Calendly in a new tab. You can also scan the code below.
           </p>
-          <div className="inline-block rounded-xl overflow-hidden bg-white p-4 shadow-sm">
+          <a
+            href={SCHEDULING_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Open scheduling page using the QR link (opens in a new tab)"
+            className="inline-block rounded-xl overflow-hidden bg-white p-4 shadow-sm focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand-blue"
+          >
             <Image
               src="/qr/Calendly%20QR%20Code%20to%20Schedule%20Visit.png"
               alt="QR code to schedule an appointment"
@@ -124,7 +145,7 @@ export default function ContactPage() {
               height={180}
               className="object-contain"
             />
-          </div>
+          </a>
         </div>
       </SectionWrapper>
     </div>
