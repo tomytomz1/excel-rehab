@@ -14,13 +14,13 @@ import { EVAL_FAQ, type ServiceContent } from "@/lib/data/service-content";
 export const PAIN_MANAGEMENT: ServiceContent = {
   title: "Pain Management Doctor in Novi, MI | Excel PM&R",
   description:
-    "Non-operative pain management in Novi, MI from a physician board certified in Pain Medicine and PM&R. Injections, physical therapy and more. Call 248.624.5176.",
-  h1: "Pain Management in Novi, MI",
+    "Pain management in Novi, MI with a physician board certified in Pain Medicine and PM&R. Non-operative evaluation, injections and physical therapy. Call 248.624.5176.",
+  h1: "Pain Management Doctor in Novi, MI",
   summary:
     "Non-operative care that looks for the source of pain and focuses on how you function day to day.",
   overview: [
     "Pain management in physical medicine and rehabilitation focuses on finding the source of pain and improving how you function day to day, without surgery. Dr. Evangelista is board certified in both Pain Medicine and Physical Medicine and Rehabilitation.",
-    "Treatment plans are built around your goals and may combine several approaches, such as physical therapy, targeted injections and guidance on activity.",
+    "Treatment plans are built around your goals and may combine several approaches, such as physical therapy, targeted injections and guidance on activity. Options are considered after an evaluation; no single procedure is right for every type of pain.",
   ],
   whoMayBenefit: [
     "People with neck and back pain, herniated discs, sciatica and other radiating nerve pain, arthritis, sports and work injuries, and pain after an auto accident are among those commonly evaluated.",
@@ -40,20 +40,28 @@ export const PAIN_MANAGEMENT: ServiceContent = {
       q: "Do I need a referral?",
       a: `Requirements depend on your insurance plan. Call ${PHONE} to check before your visit.`,
     },
+    {
+      q: "What does a pain management physiatrist do?",
+      a: "A physiatrist is a medical doctor specializing in physical medicine and rehabilitation. The evaluation looks at the source of pain, movement, function and how symptoms affect everyday activities. Care may include rehabilitation and, when appropriate, non-operative procedures.",
+    },
+    {
+      q: "Does Excel PM&R evaluate sciatica and radiating nerve pain?",
+      a: "Sciatica, herniated discs and neck or back pain that radiates into a limb are among the conditions discussed on this site. A physician evaluation helps determine whether physical therapy, a procedure or another approach may be suitable.",
+    },
     EVAL_FAQ,
   ],
 };
 
 export const ACCIDENT_INJURY: ServiceContent = {
-  title: "Auto Accident & Work Injury Doctor in Novi, MI | Excel PM&R",
+  title: "Work Injury & Auto Accident Doctor in Novi, MI | Excel PM&R",
   description:
-    "Physician-led care for car accident and work injuries in Novi, MI. Auto insurance and workers' compensation accepted. Call 248.624.5176.",
-  h1: "Auto Accident & Work Injury Care in Novi, MI",
+    "Work injury and car accident rehabilitation in Novi, MI. Physician-led evaluation and on-site physical therapy. Call to verify claim coverage: 248.624.5176.",
+  h1: "Work Injury & Auto Accident Care in Novi, MI",
   summary:
     "Evaluation and rehabilitation for injuries from car accidents and work incidents.",
   overview: [
     "Injuries from car accidents and work incidents, such as whiplash, back injuries and muscle strains, can affect sleep, work and everyday activities. A physiatrist focuses on diagnosing these injuries and helping you recover function without surgery.",
-    "Excel Physical Medicine and Rehab accepts auto insurance and workers' compensation. Coverage and authorization requirements vary, so please call the office to verify before your visit.",
+    "Excel Physical Medicine and Rehab lists auto insurance and workers' compensation among its accepted payor sources. Coverage, referrals and authorization requirements can vary by claim and treatment; call the Novi office to confirm before your visit.",
   ],
   whoMayBenefit: [
     "Common examples include whiplash and other neck injuries, low back pain, herniated discs, muscle strains and tears, slip-and-fall injuries, fractures, and rehabilitation after a head injury.",
@@ -72,7 +80,15 @@ export const ACCIDENT_INJURY: ServiceContent = {
     },
     {
       q: "What insurance do you accept for accident and work injuries?",
-      a: `Excel PM&R accepts auto insurance and workers' compensation. Because coverage and authorization rules vary by policy and claim, call ${PHONE} to verify before your visit.`,
+      a: `Excel PM&R lists auto insurance and workers' compensation among its accepted payor sources. Coverage and authorization rules vary by policy and claim, so call ${PHONE} to verify before your visit.`,
+    },
+    {
+      q: "Can I contact the office about a work injury or workers' compensation visit?",
+      a: `Yes. Call ${PHONE} to ask about a work-injury evaluation and to verify whether your claim and any required authorizations can be handled by the practice. Do not put claim numbers, diagnoses or other sensitive medical details into the website's general contact form.`,
+    },
+    {
+      q: "Is a rehabilitation appointment the same as emergency treatment after an injury?",
+      a: "No. A physiatric evaluation focuses on diagnosing injuries, rehabilitation and function. For a serious or urgent injury, obtain emergency medical care first rather than waiting for an outpatient appointment.",
     },
     EVAL_FAQ,
   ],
