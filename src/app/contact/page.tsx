@@ -30,6 +30,19 @@ export default function ContactPage() {
               <h2 className="text-xl font-semibold text-neutral-900 mb-4">
                 Send us a message
               </h2>
+              <p className="mb-4 text-base text-neutral-700 leading-relaxed">
+                Prefer to schedule online?{" "}
+                <a
+                  href={SCHEDULING_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-brand-blue underline underline-offset-4 hover:no-underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-blue"
+                >
+                  Open our scheduling calendar
+                </a>
+                . Calendly opens in a new tab. You can also send a scheduling
+                inquiry using the form below.
+              </p>
               <p className="mb-4 text-base text-neutral-700 leading-relaxed rounded-lg border border-amber-200 bg-amber-50 px-4 py-3">
                 <strong>Not for emergencies.</strong> If you have a medical
                 emergency, call 911. This form is for scheduling inquiries only.
