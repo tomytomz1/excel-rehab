@@ -19,6 +19,13 @@ export interface LocationServeLink {
   anchor: string;
 }
 
+export interface LocationCarePath {
+  /** Link to an existing page describing a relevant service or condition at the Novi office. */
+  href: string;
+  label: string;
+  description: string;
+}
+
 export interface LocationImage {
   /** Public path to the image (served from /public). */
   src: string;
@@ -99,6 +106,8 @@ export interface Location {
   whyChooseServingBody: string;
   /** City-specific FAQ entries (visible on the page for humans; no FAQPage schema). */
   faqs: readonly LocationFaq[];
+  /** Optional genuine next-step links (no fabricated satellite offices). */
+  carePathways?: readonly LocationCarePath[];
   /** 1-2 contextually adjacent sibling cities for cross-linking. */
   siblings: readonly LocationServeLink[];
 }
@@ -110,7 +119,7 @@ export const LOCATIONS: readonly Location[] = [
     footerLabel: "Northville",
     title: "Physical Therapy Near Northville, MI | Excel PM&R",
     description:
-      "Physical therapy near Northville, Michigan at Excel Physical Medicine and Rehab in nearby Novi. Individualized outpatient rehabilitation. Call 248.624.5176.",
+      "Physical therapy for Northville-area patients at our Novi, MI office. On-site rehabilitation in a physician-led PM&R practice. Call 248.624.5176.",
     primaryImage: {
       src: "/images/therapy-session.png",
       alt: "Physician guiding a patient through a supervised leg-raise exercise during a therapy session",
@@ -170,6 +179,36 @@ export const LOCATIONS: readonly Location[] = [
       {
         q: "What conditions does Excel PM&R evaluate for Northville patients?",
         a: "Excel PM&R evaluates a range of spine, joint, musculoskeletal, neurological, and injury-related conditions. Physical therapy may be included in an individualized plan when clinically appropriate.",
+      },
+      {
+        q: "Do Northville patients need a referral for therapy at the Novi office?",
+        a: "Referral and prior-authorization requirements depend on your insurance plan and the services being considered. Call 248.624.5176 to ask the office what is required before scheduling.",
+      },
+      {
+        q: "Can Northville patients request a physiatric evaluation and physical therapy in one practice?",
+        a: "Excel PM&R is a physician-led practice with on-site physical therapy at its Novi office. A physiatric evaluation can help guide which rehabilitation options may be appropriate for your specific needs.",
+      },
+    ],
+    carePathways: [
+      {
+        href: "/physical-therapy-novi-mi",
+        label: "Physical therapy at our Novi office",
+        description: "See what to expect from the practice's on-site physical therapy and how to verify insurance and scheduling.",
+      },
+      {
+        href: "/conditions/cervical-lumbar-radiculopathy",
+        label: "Sciatica and radiating nerve pain",
+        description: "Learn how symptoms in the back, neck, arms or legs may be evaluated without assuming one treatment is appropriate for everyone.",
+      },
+      {
+        href: "/conditions/herniated-discs",
+        label: "Herniated disc evaluation",
+        description: "Read about non-operative options and the role of physical rehabilitation after a physician assessment.",
+      },
+      {
+        href: "/pain-management-novi-mi",
+        label: "Physician-led pain management",
+        description: "Review how pain evaluation, rehabilitation and selected procedures fit within the Novi practice.",
       },
     ],
     siblings: [
