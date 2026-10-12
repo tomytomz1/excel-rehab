@@ -54,8 +54,10 @@ export function GoogleAnalytics() {
         if (!PUBLIC_HOSTS.has(window.location.hostname)) return;
         const analyticsWindow = window as AnalyticsWindow;
         analyticsWindow.dataLayer = analyticsWindow.dataLayer || [];
-        analyticsWindow.gtag = (...args: unknown[]) => {
-          analyticsWindow.dataLayer?.push(args);
+        analyticsWindow.gtag = function () {
+          // Google tag commands use native Arguments objects, not plain arrays.
+          // eslint-disable-next-line prefer-rest-params
+          analyticsWindow.dataLayer?.push(arguments);
         };
         analyticsWindow.gtag("js", new Date());
         analyticsWindow.gtag("config", MEASUREMENT_ID, {
