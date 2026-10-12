@@ -62,6 +62,40 @@ export default function PatientResourcesPage() {
             </Link>
             .
           </p>
+          <div className="mt-10 max-w-3xl border-t border-neutral-200 pt-8">
+            <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 mb-4 leading-tight">
+              Questions to Ask Before Your Appointment
+            </h2>
+            <p className="text-neutral-600 leading-relaxed mb-4">
+              Coverage depends on your specific insurance plan and the service
+              you need. Before scheduling, call the office to confirm your
+              benefits and ask about any referral or authorization requirements.
+              An insurer appearing above does not guarantee coverage for every
+              plan or procedure.
+            </p>
+            <ul className="list-disc pl-6 space-y-3 text-neutral-700 leading-relaxed">
+              <li>Does the practice accept my specific plan for the service I am requesting?</li>
+              <li>Do I need a referral, prior authorization, or a physician assessment?</li>
+              <li>Which identification, insurance information, records, or imaging should I bring?</li>
+              <li>What should I ask my insurer about deductibles, copayments, and other out-of-pocket costs?</li>
+              <li>How do I arrange the appropriate appointment and confirm its time?</li>
+            </ul>
+            <p className="mt-5 text-neutral-600 leading-relaxed">
+              Call{" "}
+              <a href={`tel:${PHONE.replace(/\./g, "")}`} className="text-brand-blue font-semibold hover:underline">{PHONE}</a>
+              {" "}or use the{" "}
+              <Link href="/contact" className="text-brand-blue font-semibold hover:underline">scheduling inquiry form</Link>
+              . The form is for scheduling questions; please do not include
+              symptoms, diagnoses, or other sensitive medical details.
+            </p>
+            <p className="mt-5 text-neutral-600 leading-relaxed">
+              Explore{" "}
+              <Link href="/physical-therapy-novi-mi" className="text-brand-blue font-semibold hover:underline">on-site physical therapy in Novi</Link>
+              {" "}or{" "}
+              <Link href="/pain-management-novi-mi" className="text-brand-blue font-semibold hover:underline">pain management</Link>
+              {" "}before discussing your appointment with the office.
+            </p>
+          </div>
         </div>
       </SectionWrapper>
     </div>

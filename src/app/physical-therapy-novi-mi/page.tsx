@@ -47,6 +47,14 @@ const FAQS = [
     a: "The office is located at 31190 Novi Road, Novi, Michigan 48377.",
   },
   {
+    q: "Do I need a referral or physician assessment before physical therapy?",
+    a: "Referral and authorization requirements can vary by insurance plan. Call the office before scheduling to ask whether a referral, authorization, or physician assessment is needed for your appointment.",
+  },
+  {
+    q: "What should I bring to my first appointment?",
+    a: "Ask the office which identification, insurance information, medical records, or imaging to bring when you arrange your appointment. The staff can clarify the requirements for your visit.",
+  },
+  {
     q: "How can I request an appointment?",
     a: "Call 248.624.5176 or use the website's scheduling inquiry form. Do not submit symptoms, diagnoses, or other sensitive medical information through the form.",
   },
@@ -193,6 +201,33 @@ export default function PhysicalTherapyNoviPage() {
                 />
               </div>
             </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper amount={0} className="pb-12 lg:pb-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl rounded-xl bg-neutral-100 p-6 sm:p-8">
+            <h2 className="text-2xl font-semibold text-neutral-900 leading-tight mb-4">
+              Planning Your Visit
+            </h2>
+            <p className="text-neutral-700 leading-relaxed">
+              Call {PHONE} to ask about on-site physical therapy, insurance
+              verification, and the appointment that fits your needs. Confirm
+              any referral or assessment requirements with the office before
+              your visit. Care is provided at {SITE_ADDRESS.full}.
+            </p>
+            <p className="mt-4 text-neutral-700 leading-relaxed">
+              Our{" "}
+              <Link href="/patient-resources" className="text-brand-blue font-semibold hover:underline">
+                insurance and appointment questions
+              </Link>
+              {" "}can help you prepare for that conversation. You can also{" "}
+              <Link href="/contact" className="text-brand-blue font-semibold hover:underline">
+                request an appointment
+              </Link>
+              {" "}through the scheduling inquiry form.
+            </p>
           </div>
         </div>
       </SectionWrapper>

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Fragment } from "react";
 import { Building2, ArrowRight } from "lucide-react";
 import { DOCTOR } from "@/lib/data/doctor";
@@ -17,6 +18,14 @@ export const metadata = pageMetadata({
 
 const QUOTE =
   "We are committed to providing the highest quality care to help patients achieve their functional goals. At Excel PM&R, we put the needs of the patient first.";
+
+// Factual education history from Corewell's physician directory, checked October 12, 2026.
+const EDUCATION_HISTORY = [
+  { year: "2016", role: "Pain medicine fellowship", institution: "Beth Israel Deaconess Medical Center" },
+  { year: "2015", role: "Physical medicine and rehabilitation residency", institution: "Mayo Clinic School of Graduate Medical Education" },
+  { year: "2012", role: "Internal medicine internship", institution: "Saint Elizabeth's Medical Center" },
+  { year: "2011", role: "Doctor of Medicine", institution: "Tufts University School of Medicine" },
+] as const;
 
 const APPROACH_STEPS = [
   {
@@ -122,6 +131,51 @@ export default function AboutPage() {
                 </ul>
               </div>
             </div>
+          </div>
+        </div>
+      </SectionWrapper>
+
+      <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white border-t border-neutral-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-3xl">
+            <h2 className="text-[1.65rem] sm:text-[2.35rem] font-semibold text-neutral-900 leading-tight mb-5">
+              Medical Education and Specialty Training
+            </h2>
+            <p className="text-neutral-700 leading-relaxed mb-6">
+              Dr. Evangelista&apos;s medical training includes a medical degree
+              from Tufts, residency training in physical medicine and
+              rehabilitation at Mayo Clinic, and a fellowship in pain medicine
+              at Beth Israel Deaconess Medical Center.
+            </p>
+            <dl className="space-y-5">
+              {EDUCATION_HISTORY.map(({ year, role, institution }) => (
+                <div key={role} className="border-l-2 border-brand-blue pl-5">
+                  <dt className="font-semibold text-neutral-900">{role}</dt>
+                  <dd className="text-neutral-700 leading-relaxed">{institution} · {year}</dd>
+                </div>
+              ))}
+            </dl>
+            <p className="mt-6 text-sm text-neutral-600 leading-relaxed">
+              Education details are listed in{" "}
+              <a
+                href="https://providers.corewellhealth.org/provider/augustus-p-evangelista/3191872"
+                className="text-brand-blue font-semibold hover:underline"
+              >
+                Corewell Health&apos;s physician directory
+              </a>
+              .
+            </p>
+            <p className="mt-6 text-neutral-700 leading-relaxed">
+              Learn about{" "}
+              <Link href="/pain-management-novi-mi" className="text-brand-blue font-semibold hover:underline">
+                physician-led pain management in Novi
+              </Link>
+              {" "}and{" "}
+              <Link href="/physical-therapy-novi-mi" className="text-brand-blue font-semibold hover:underline">
+                on-site physical therapy
+              </Link>
+              {" "}at Excel Physical Medicine and Rehab.
+            </p>
           </div>
         </div>
       </SectionWrapper>

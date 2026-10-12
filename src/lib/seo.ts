@@ -3,7 +3,7 @@ import { WEBSITE_URL } from "@/lib/constants";
 
 /** Absolute URL for a site path (e.g. `/about` → https://www.excel-rehab.com/about). */
 export function absoluteUrl(path: string): string {
-  if (path === "/" || path === "") return WEBSITE_URL;
+  if (path === "/" || path === "") return `${WEBSITE_URL}/`;
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return `${WEBSITE_URL}${normalized}`;
 }
