@@ -24,7 +24,7 @@ export default function PrivacyPage() {
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-white">
         <LegalProse>
           <p className="text-sm text-neutral-500 italic">
-            Last updated: May 2026. This policy describes how {SITE_NAME} handles
+            Last updated: October 12, 2026. This policy describes how {SITE_NAME} handles
             information collected through {WEBSITE_URL}. Your attorney may
             review and customize this text before production use.
           </p>
@@ -75,8 +75,22 @@ export default function PrivacyPage() {
 
           <h2>Cookies and analytics</h2>
           <p>
-            This website does not currently use advertising cookies or third-party
-            analytics. If that changes, this policy will be updated.
+            We use Google Analytics 4 and Vercel Web Analytics to understand
+            website traffic and improve our public website. Google Analytics may
+            use cookies to measure visits and collect technical information such
+            as browser and device details. Our Google Analytics implementation
+            measures page views with advertising personalization and Google
+            signals disabled. We do not send contact form contents, names,
+            phone numbers, email addresses, symptoms, or diagnoses to Google
+            Analytics. URL query strings and fragments are excluded from the
+            page addresses we send.
+          </p>
+          <p>
+            You can manage cookies through your browser settings. Google also
+            provides an{" "}
+            <a href="https://tools.google.com/dlpage/gaoptout">
+              Analytics opt-out browser add-on
+            </a>.
           </p>
 
           <h2>Your choices</h2>

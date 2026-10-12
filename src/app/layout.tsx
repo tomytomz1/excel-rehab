@@ -6,6 +6,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingMobileCTA } from "@/components/layout/FloatingMobileCTA";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import {
   SITE_NAME,
   SITE_ADDRESS,
@@ -185,6 +186,7 @@ export default function RootLayout({
         <Footer />
         <FloatingMobileCTA />
         <Analytics />
+        {process.env.VERCEL_ENV === "production" && <GoogleAnalytics />}
       </body>
     </html>
   );
