@@ -2,7 +2,7 @@ import Image from "next/image";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { ContactFormClient } from "./ContactFormClient";
-import { SITE_ADDRESS, PHONE, FAX, SITE_NAME, BUSINESS_HOURS } from "@/lib/constants";
+import { SITE_ADDRESS, PHONE, FAX, SITE_NAME, BUSINESS_HOURS, SCHEDULING_URL } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata = pageMetadata({
@@ -10,9 +10,6 @@ export const metadata = pageMetadata({
   title: `Contact Us | ${SITE_NAME}`,
   description: `${SITE_ADDRESS.full}. Phone ${PHONE}, Fax ${FAX}. Schedule an appointment or send a message.`,
 });
-
-// Same destination encoded in the practice's existing scheduling QR image.
-const SCHEDULING_URL = "https://calendly.com/excelphysicalmedicine";
 
 export default function ContactPage() {
   const phoneTel = PHONE.replace(/\./g, "");

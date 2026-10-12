@@ -29,6 +29,9 @@ export const WEBSITE_URL = "https://www.excel-rehab.com";
 
 export const SITEMAP_URL = `${WEBSITE_URL}/sitemap.xml`;
 
+/** Same destination encoded in the practice's existing scheduling QR image. */
+export const SCHEDULING_URL = "https://calendly.com/excelphysicalmedicine";
+
 /** Stable schema.org node id for the business (LocalBusiness/MedicalBusiness). */
 export const BUSINESS_SCHEMA_ID = `${WEBSITE_URL}/#business`;
 

@@ -79,8 +79,10 @@ export default function PrivacyPage() {
             website traffic and improve our public website. Google Analytics may
             use cookies to measure visits and collect technical information such
             as browser and device details. Our Google Analytics implementation
-            measures page views with advertising personalization and Google
-            signals disabled. We do not send contact form contents, names,
+            measures page views and clicks on phone and scheduling links with
+            advertising personalization and Google signals disabled. These
+            clicks do not establish that a call or appointment was completed.
+            We do not send contact form contents, names,
             phone numbers, email addresses, symptoms, or diagnoses to Google
             Analytics. URL query strings and fragments are excluded from the
             page addresses we send.
