@@ -35,11 +35,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/services/:slug",
-        destination: "/services",
-        permanent: true,
-      },
-      {
         source: "/conditions/:slug",
         destination: "/conditions",
         permanent: true,

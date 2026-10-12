@@ -15,6 +15,7 @@ import Link from "next/link";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { SERVICES } from "@/lib/data/services";
+import { SERVICE_CONTENT } from "@/lib/data/service-content";
 import { SITE_NAME } from "@/lib/constants";
 import { pageMetadata } from "@/lib/seo";
 import { cn } from "@/lib/utils";
@@ -61,12 +62,29 @@ export default function ServicesPage() {
                 "flex items-start gap-4 p-6 lg:p-8 rounded-xl bg-white",
                 "border border-neutral-200/80 shadow-sm"
               );
+              const summary =
+                SERVICE_CONTENT[service.slug]?.summary ??
+                (service.slug === "on-site-physical-therapy"
+                  ? "Physical therapy on-site at our Novi office, coordinated with your physician's treatment plan."
+                  : undefined);
               const inner = (
                 <>
                   <ServiceIcon name={service.icon} />
-                  <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight">
-                    {service.name}
-                  </h2>
+                  <div className="min-w-0">
+                    <h2 className="text-xl sm:text-2xl font-semibold text-neutral-900 leading-tight">
+                      {service.name}
+                    </h2>
+                    {summary && (
+                      <p className="mt-2 text-base text-neutral-600 leading-relaxed">
+                        {summary}
+                      </p>
+                    )}
+                    {service.href && (
+                      <span className="mt-3 inline-block text-brand-blue font-semibold">
+                        Learn more <span aria-hidden>→</span>
+                      </span>
+                    )}
+                  </div>
                 </>
               );
 
