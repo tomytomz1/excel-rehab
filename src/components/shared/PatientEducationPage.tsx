@@ -17,6 +17,8 @@ type Props = {
   aboutHeading: string;
   benefitHeading?: string;
   expectHeading?: string;
+  /** Show an early consultation option on high-intent treatment pages. */
+  showEarlyConsultationCta?: boolean;
   /** Pill links shown under the "who may benefit" section. */
   chips?: { label: string; items: LinkItem[] };
   related?: { heading: string; items: LinkItem[]; allHref: string; allLabel: string };
@@ -35,6 +37,7 @@ export function PatientEducationPage({
   aboutHeading,
   benefitHeading = "Who may benefit",
   expectHeading = "What to expect",
+  showEarlyConsultationCta = false,
   chips,
   related,
 }: Props) {
@@ -57,6 +60,25 @@ export function PatientEducationPage({
               </p>
             ))}
           </section>
+
+          {showEarlyConsultationCta && (
+            <aside className="rounded-xl border border-neutral-200 bg-neutral-50 p-5 sm:p-6" aria-label="Request a consultation">
+              <p className="text-lg font-semibold text-neutral-900 mb-3">
+                Questions about evaluation or treatment at our Novi office?
+              </p>
+              <p className="text-base text-neutral-700 leading-relaxed mb-4">
+                A consultation helps determine which options, if any, are appropriate for your individual needs.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Link href="/contact" className={cn(primaryCta, "w-full sm:w-auto")}>
+                  Request a consultation
+                </Link>
+                <a href={`tel:${phoneTel}`} className={cn(outlineCta, "w-full sm:w-auto")}>
+                  Call {PHONE}
+                </a>
+              </div>
+            </aside>
+          )}
 
           <section>
             <h2 className="text-2xl sm:text-3xl font-semibold text-neutral-900 leading-tight mb-4">

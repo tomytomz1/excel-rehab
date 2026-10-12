@@ -72,7 +72,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "trigger-point-injections": {
     title: "Trigger Point Injections in Novi, MI | Excel PM&R",
     description:
-      "Trigger point injections for painful muscle knots in the neck, back and shoulders. Physician-led care in Novi, MI. Call 248.624.5176.",
+      "Trigger point injections for neck, shoulder and back muscle pain in Novi, MI. Physician-led evaluation. Call 248.624.5176.",
     h1: "Trigger Point Injections in Novi, MI",
     summary:
       "Targeted injections into tight, tender muscle knots that can cause local or referred pain in the neck, shoulders and back.",
@@ -94,6 +94,10 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
         q: "Are trigger point injections the same as dry needling?",
         a: "No. Both use a needle at the trigger point, but a trigger point injection delivers medication, while dry needling does not.",
       },
+      {
+        q: "Do trigger point injections treat every kind of neck or back pain?",
+        a: "No. Trigger point injections target painful muscle trigger points. Neck and back pain may have other causes, so an evaluation is important before deciding which treatment, if any, is appropriate.",
+      },
       EVAL_FAQ,
     ],
   },
@@ -101,7 +105,7 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
   "epidural-steroid-injections": {
     title: "Epidural Steroid Injections in Novi, MI | Excel PM&R",
     description:
-      "Epidural steroid injections for sciatica, herniated discs and radiating neck or back pain. Board certified pain physician in Novi, MI.",
+      "Epidural steroid injections in Novi, MI for sciatica, herniated discs and radiating nerve pain. Physician-led evaluation. Call 248.624.5176.",
     h1: "Epidural Steroid Injections in Novi, MI",
     summary:
       "Steroid medication delivered near irritated spinal nerves to ease radiating pain from herniated discs and radiculopathy.",
@@ -122,6 +126,10 @@ export const SERVICE_CONTENT: Record<string, ServiceContent> = {
       {
         q: "Will an epidural steroid injection fix a herniated disc?",
         a: "An ESI does not repair the disc. It targets inflammation around the nerve so pain can settle while the body heals and you rebuild strength and mobility.",
+      },
+      {
+        q: "Is an epidural steroid injection the same as a trigger point injection?",
+        a: "No. Epidural steroid injections deliver medication near spinal nerves; trigger point injections target tender areas within muscles. A physician evaluates your symptoms before recommending either option.",
       },
       EVAL_FAQ,
     ],

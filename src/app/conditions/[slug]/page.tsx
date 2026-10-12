@@ -77,6 +77,7 @@ export default async function ConditionPage({ params }: Props) {
       aboutHeading={`About ${condition.name.toLowerCase()}`}
       benefitHeading="Common symptoms"
       expectHeading="How it's evaluated and treated"
+      showEarlyConsultationCta={slug === "cervical-lumbar-radiculopathy"}
       related={{
         heading: "Treatments that may help",
         items: [...treatments, { label: "Pain Management in Novi", href: "/pain-management-novi-mi" }],

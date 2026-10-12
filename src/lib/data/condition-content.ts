@@ -45,9 +45,9 @@ export const CONDITION_CONTENT: Record<string, ServiceContent> = {
   },
 
   "cervical-lumbar-radiculopathy": {
-    title: "Sciatica & Radiculopathy Treatment in Novi, MI | Excel PM&R",
+    title: "Sciatica Treatment in Novi, MI | Excel PM&R",
     description:
-      "Non-surgical treatment for sciatica and pinched nerves in the neck and low back from a board certified physiatrist in Novi, MI. Call 248.624.5176.",
+      "Sciatica and pinched-nerve evaluation in Novi, MI. Physician-led non-surgical options may include physical therapy or injections. Call 248.624.5176.",
     h1: "Sciatica & Radiculopathy Treatment in Novi, MI",
     summary:
       "Care for pinched nerves in the neck and low back, including sciatica that travels down the leg.",
@@ -69,6 +69,10 @@ export const CONDITION_CONTENT: Record<string, ServiceContent> = {
       {
         q: "What is the difference between sciatica and radiculopathy?",
         a: "Sciatica describes pain along the path of the sciatic nerve, down the back of the leg. It is usually caused by lumbar radiculopathy: irritation of a nerve root in the low back.",
+      },
+      {
+        q: "What type of doctor evaluates sciatica?",
+        a: "A physiatrist is a physician specializing in physical medicine and rehabilitation, including conditions that affect nerves, movement and function. At Excel PM&R in Novi, Dr. Evangelista evaluates symptoms and discusses non-operative treatment options when appropriate.",
       },
       EVAL_FAQ,
     ],
