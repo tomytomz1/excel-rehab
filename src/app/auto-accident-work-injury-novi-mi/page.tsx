@@ -29,6 +29,7 @@ export default function AccidentInjuryPage() {
       jsonLd={topicPageJsonLd(PATH, "Auto Accident & Work Injuries", ACCIDENT_INJURY)}
       breadcrumbs={[{ label: "Home", href: "/" }, { label: "Auto Accident & Work Injuries" }]}
       aboutHeading="Care after a car accident or work injury"
+      showEarlyConsultationCta
       benefitHeading="Injuries commonly evaluated"
       expectHeading="Getting started"
       chips={{ label: "Conditions", items: conditionLinks(CONDITIONS) }}
@@ -37,8 +38,9 @@ export default function AccidentInjuryPage() {
         items: [
           { label: "On-Site Physical Therapy", href: "/physical-therapy-novi-mi" },
           { label: "Pain Management", href: "/pain-management-novi-mi" },
+          { label: "Sciatica and Radiating Nerve Pain", href: "/conditions/cervical-lumbar-radiculopathy" },
           { label: "Trigger Point Injections", href: "/services/trigger-point-injections" },
-          { label: "Accepted Insurance", href: "/patient-resources" },
+          { label: "Accepted Insurance & Patient Resources", href: "/patient-resources" },
         ],
         allHref: "/services",
         allLabel: "View all services",
