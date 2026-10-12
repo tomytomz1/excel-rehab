@@ -14,7 +14,7 @@ export default function ConditionsPage() {
   return (
     <div>
       <InnerPageHero
-        title="Conditions We Treat"
+        title="Conditions We Treat in Novi, MI"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Conditions" }]}
         variant="brand-blue"
       />
