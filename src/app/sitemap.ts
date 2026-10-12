@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { absoluteUrl } from "@/lib/seo";
 import { SERVICE_CONTENT } from "@/lib/data/service-content";
+import { CONDITION_CONTENT } from "@/lib/data/condition-content";
 
 const PATHS: Array<{
   path: string;
@@ -21,7 +22,14 @@ const PATHS: Array<{
   { path: "/physical-therapy-wixom-mi", changeFrequency: "monthly", priority: 0.9 },
   { path: "/physical-therapy-walled-lake-mi", changeFrequency: "monthly", priority: 0.9 },
   { path: "/physical-therapy-commerce-township-mi", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/pain-management-novi-mi", changeFrequency: "monthly", priority: 0.9 },
+  { path: "/auto-accident-work-injury-novi-mi", changeFrequency: "monthly", priority: 0.9 },
   { path: "/conditions", changeFrequency: "monthly", priority: 0.8 },
+  ...Object.keys(CONDITION_CONTENT).map((slug) => ({
+    path: `/conditions/${slug}`,
+    changeFrequency: "monthly" as const,
+    priority: 0.8,
+  })),
   { path: "/patient-resources", changeFrequency: "monthly", priority: 0.8 },
   { path: "/contact", changeFrequency: "monthly", priority: 0.9 },
   { path: "/privacy", changeFrequency: "yearly", priority: 0.3 },

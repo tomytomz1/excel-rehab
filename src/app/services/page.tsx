@@ -56,6 +56,24 @@ export default function ServicesPage() {
 
       <SectionWrapper amount={0} className="py-12 lg:py-16 bg-neutral-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-lg text-neutral-700 leading-relaxed max-w-4xl mb-10">
+            Non-operative{" "}
+            <Link
+              href="/pain-management-novi-mi"
+              className="text-brand-blue font-semibold hover:underline"
+            >
+              pain management in Novi
+            </Link>
+            , rehabilitation and{" "}
+            <Link
+              href="/auto-accident-work-injury-novi-mi"
+              className="text-brand-blue font-semibold hover:underline"
+            >
+              care for auto accident and work injuries
+            </Link>
+            , led by a physician board certified in Physical Medicine and
+            Rehabilitation and in Pain Medicine.
+          </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {SERVICES.map((service) => {
               const cardClass = cn(

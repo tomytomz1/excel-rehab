@@ -30,11 +30,13 @@ function CategoryCard({
   index,
   inView,
   reduced,
+  pageSlugs,
 }: {
   category: ConditionCategory;
   index: number;
   inView: boolean;
   reduced: boolean | null;
+  pageSlugs: readonly string[];
 }) {
   const conditions = getConditionsByCategory(category);
   const Icon = CATEGORY_ICONS[category];
@@ -74,7 +76,16 @@ function CategoryCard({
               className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-brand-green"
               aria-hidden
             />
-            <span>{condition.name}</span>
+            {pageSlugs.includes(condition.slug) ? (
+              <Link
+                href={`/conditions/${condition.slug}`}
+                className="text-brand-blue font-semibold hover:underline"
+              >
+                {condition.name}
+              </Link>
+            ) : (
+              <span>{condition.name}</span>
+            )}
           </li>
         ))}
       </ul>
@@ -82,7 +93,8 @@ function CategoryCard({
   );
 }
 
-export function ConditionsHubClient() {
+/** `pageSlugs`: conditions with their own page (passed from the server so page copy stays out of the client bundle). */
+export function ConditionsHubClient({ pageSlugs }: { pageSlugs: readonly string[] }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, amount: 0.1 });
   const reduced = useReducedMotion();
@@ -108,6 +120,7 @@ export function ConditionsHubClient() {
               index={index}
               inView={inView}
               reduced={reduced}
+              pageSlugs={pageSlugs}
             />
           ))}
         </div>

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Fragment } from "react";
 import { Building2, ArrowRight } from "lucide-react";
 import { DOCTOR } from "@/lib/data/doctor";
-import { SITE_NAME, TAGLINES, GOALS } from "@/lib/constants";
+import { TAGLINES, GOALS } from "@/lib/constants";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { pageMetadata } from "@/lib/seo";
@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 
 export const metadata = pageMetadata({
   path: "/about",
-  title: `About Dr. Evangelista | ${SITE_NAME}`,
+  title: "Dr. Augustus (Peter) Evangelista, MD | Physiatrist, Novi MI",
   description: `Meet Dr. Augustus (Peter) Evangelista, board certified in Physical Medicine and Rehabilitation and Pain Medicine. Medical Director of Excel PM&R in Novi, MI. ${TAGLINES.primary}`,
 });
 

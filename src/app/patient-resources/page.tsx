@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { InnerPageHero } from "@/components/shared/InnerPageHero";
 import { SectionWrapper } from "@/components/shared/SectionWrapper";
 import { ACCEPTED_INSURANCE } from "@/lib/data/insurance";
@@ -50,6 +51,16 @@ export default function PatientResourcesPage() {
             >
               {PHONE}
             </a>
+          </p>
+          <p className="mt-4 text-neutral-600 leading-relaxed">
+            Injured in a car accident or at work? Learn about{" "}
+            <Link
+              href="/auto-accident-work-injury-novi-mi"
+              className="text-brand-blue font-semibold hover:underline"
+            >
+              auto accident and work injury care in Novi
+            </Link>
+            .
           </p>
         </div>
       </SectionWrapper>

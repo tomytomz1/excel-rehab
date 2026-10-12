@@ -44,7 +44,14 @@ export function ServicesOverview() {
           Our Services
         </h2>
         <p className="text-neutral-600 text-center max-w-2xl mx-auto mb-12 leading-relaxed">
-          Physician-led care under one roof in Novi, Michigan, from{" "}
+          Physician-led{" "}
+          <Link
+            href="/pain-management-novi-mi"
+            className="text-brand-blue font-semibold hover:underline"
+          >
+            pain management
+          </Link>{" "}
+          and rehabilitation under one roof in Novi, Michigan, from{" "}
           <Link
             href="/physical-therapy-novi-mi"
             className="text-brand-blue font-semibold hover:underline"
