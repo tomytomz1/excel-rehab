@@ -37,11 +37,11 @@ const PATHS: Array<{
   { path: "/accessibility", changeFrequency: "yearly", priority: 0.3 },
 ];
 
+// No lastModified: a generation-time stamp on every URL is inaccurate, and
+// Google ignores lastmod values it can't trust. Add real per-page dates if needed.
 export default function sitemap(): MetadataRoute.Sitemap {
-  const lastModified = new Date();
   return PATHS.map(({ path, changeFrequency, priority }) => ({
     url: absoluteUrl(path),
-    lastModified,
     changeFrequency,
     priority,
   }));

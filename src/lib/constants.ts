@@ -9,6 +9,8 @@ export const SITE_NAME = "Excel Physical Medicine and Rehab";
 export const SITE_ALTERNATE_NAMES = [
   "Excel PM&R",
   "Excel Physical Medicine & Rehab",
+  // Name used on the Google Business Profile, Healthgrades and Corewell listings.
+  "Excel Physical Medicine and Rehabilitation",
   "Excel Rehab Novi",
 ] as const;
 
