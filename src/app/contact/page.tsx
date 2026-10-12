@@ -17,7 +17,7 @@ export default function ContactPage() {
   return (
     <div>
       <InnerPageHero
-        title="Contact Us"
+        title="Contact Excel PM&R in Novi, MI"
         breadcrumbs={[{ label: "Home", href: "/" }, { label: "Contact" }]}
         variant="brand-blue"
       />
