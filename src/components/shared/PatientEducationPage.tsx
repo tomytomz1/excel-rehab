@@ -146,6 +146,23 @@ export function PatientEducationPage({
               </Link>
               .
             </p>
+            <p className="mt-4 text-sm text-neutral-700 leading-relaxed">
+              Verify this physician&apos;s specialty and practice address in the{" "}
+              {DOCTOR.publicDirectoryProfiles.map((profile, i) => (
+                <span key={profile.url}>
+                  {i > 0 ? " or " : ""}
+                  <a
+                    href={profile.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-brand-blue font-semibold hover:underline"
+                  >
+                    {profile.label} directory
+                  </a>
+                </span>
+              ))}
+              .
+            </p>
           </section>
 
           <section>
