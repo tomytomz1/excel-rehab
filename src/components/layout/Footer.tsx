@@ -140,6 +140,7 @@ export function Footer() {
           for urgent medical situations.
         </p>
         <p>© 2026 {SITE_NAME}. All rights reserved.</p>
+        <p className="text-sm text-neutral-300">Built by <a href="https://beltran.digital/" target="_blank" rel="noopener" className="underline underline-offset-4 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">Beltrán Digital</a></p>
         <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
           <Link href="/privacy" className="hover:text-neutral-300 transition-colors">
             Privacy Policy
