@@ -159,6 +159,24 @@ export function ContactFormClient() {
         throw new Error("Unable to send your message right now.");
       }
 
+      // Analytics only counts successfully accepted inquiries. Do not send patient
+      // names, contact details, visit reasons, messages, or form values to GA4.
+      // Only the live clinic domain may emit production measurement events.
+      if (
+        !data.website &&
+        (window.location.hostname === "excel-rehab.com" ||
+          window.location.hostname === "www.excel-rehab.com")
+      ) {
+        const analyticsWindow = window as Window & {
+          gtag?: (...args: unknown[]) => void;
+        };
+        analyticsWindow.gtag?.("event", "generate_lead", {
+          send_to: "G-7RE9VSZZ60",
+          page_location: window.location.origin + "/contact",
+          page_referrer: "",
+        });
+      }
+
       setSubmitted(true);
     } catch {
       setSubmitError("Unable to send your message right now. Please call us directly.");
